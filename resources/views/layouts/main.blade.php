@@ -100,7 +100,7 @@
 										<ul class="acc-menu">
 											<li><a href="/jurnal">Tabel Jurnal</a></li>
 											<li><a href="/seminar">Tabel Jenis Seminar</a></li>
-											<li><a href="#">Tabel Reviewer</a></li>
+											<li><a href="/reviewer">Tabel Reviewer</a></li>
 										</ul>
 									</li>
 									
