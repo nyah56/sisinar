@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SeminarController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,3 +20,9 @@ Route::get('/', function () {
 Route::get('/jurnal', function () {
     return view('jurnal.jurnal');
 });
+Route::get('/seminar', [SeminarController::class, 'index']);
+Route::get('/seminar/entry', [SeminarController::class, 'create']);
+Route::post('/seminar/store', [SeminarController::class, 'store']);
+Route::get('/seminar/edit/{id}', [SeminarController::class, 'edit']);
+Route::put('/seminar/update/{id}', [SeminarController::class, 'update']);
+Route::get('/seminar/destroy/{id}', [SeminarController::class, 'destroy']);

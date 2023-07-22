@@ -128,7 +128,7 @@
 				<div class="static-content">
 					<div class="page-content">
 						<ol class="breadcrumb">
-							<li class=""><a></li>
+							
 						</ol>
 						<div class="container-fluid">
 							{{-- @include('sweetalert::alert') --}}
