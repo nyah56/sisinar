@@ -99,7 +99,7 @@
 									<li><a href="javascript:;"><i class="ti ti-settings"></i><span>Admin</span></a>
 										<ul class="acc-menu">
 											<li><a href="/jurnal">Tabel Jurnal</a></li>
-											<li><a href="#">Tabel Jenis Seminar</a></li>
+											<li><a href="/seminar">Tabel Jenis Seminar</a></li>
 											<li><a href="#">Tabel Reviewer</a></li>
 										</ul>
 									</li>
