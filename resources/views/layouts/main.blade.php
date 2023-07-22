@@ -174,7 +174,7 @@
 										</div>
 										<div class="panel-footer">
 											<div class="clearfix">
-												<a href="#" class="btn btn-primary pull-right">Login</a>
+												<a href="#" class="btn btn-indigo pull-right">Login</a>
 											</div>
 										</div>
 									</div>
