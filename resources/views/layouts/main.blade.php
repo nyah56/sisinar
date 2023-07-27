@@ -66,9 +66,9 @@
 			</li>
 			
 			{{-- rendering condition by user logged in --}}
-			{{-- <span class="username">Hi,{{ Auth::user()->username}}</span> --}}
+			
 		
-			{{-- <li class="toolbar-icon-bg hidden-xs">
+			<li class="toolbar-icon-bg hidden-xs">
 				<a class="logged-in" href="#"  data-toggle="dropdown">
 					<span class="icon-bg"><i class="fa fa-user"></i></span>
 				</a>
@@ -76,9 +76,9 @@
 					<li><a href="#/"><span>Hi,Ibnu</span></a></li>
 					<li><a href="#/"><i class="ti ti-settings"></i><span>Profile Settings</span></a></li>
 				
-				<li><a href="{{ route('logout') }}"><i class="ti ti-shift-right"></i><span>Logout</span></a></li>
+				{{-- <li><a href="{{ route('logout') }}"><i class="ti ti-shift-right"></i><span>Logout</span></a></li> --}}
 				</ul>
-			</li> --}}
+			</li>
 
 		</ul>
 
@@ -95,7 +95,7 @@
 								<ul class="acc-menu">
 									<li class="nav-separator"><span>Explore</span></li>
 									<li><a href="/"><i class="ti ti-home"></i><span>Dashboard</span></a></li>
-									{{-- <li><a href="/"><i class="ti ti-settings"></i><span>Admin</span></a></li> --}}
+									
 									<li><a href="javascript:;"><i class="ti ti-settings"></i><span>Admin</span></a>
 										<ul class="acc-menu">
 											<li><a href="/jurnal">Tabel Jurnal</a></li>
@@ -108,13 +108,7 @@
 
 									</li>
 									
-									{{-- <li><a href="javascript:;"><i class="ti ti-file"></i><span>Report</span></a>
-										<ul class="acc-menu">
-											<li><a href="/">Transaksi</a></li>
-											<li><a href="/lapor/stok">Stok</a></li>
-											
-										</ul>
-									</li> --}}
+								
 
 								</ul>
 							</nav>
@@ -244,7 +238,7 @@
 	
 
 @stack('notif')
-
+@stack('text')
 </body>
 
 
