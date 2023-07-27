@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\JurnalController;
+use App\Http\Controllers\KesekretariatanController;
 use App\Http\Controllers\ReviewerController;
 use App\Http\Controllers\SeminarController;
 use Illuminate\Support\Facades\Route;
@@ -36,3 +37,8 @@ Route::post('/reviewer/store', [ReviewerController::class, 'store']);
 Route::get('/reviewer/edit/{id}', [ReviewerController::class, 'edit']);
 Route::put('/reviewer/update/{id}', [ReviewerController::class, 'update']);
 Route::get('/reviewer/destroy/{id}', [ReviewerController::class, 'destroy']);
+// Kesekretariatan
+
+Route::get('/kesekretariatan',[KesekretariatanController::class,'index']);
+Route::post('/kesekretariatanupdate/{id}',[KesekretariatanController::class,'update']);
+

@@ -3,16 +3,13 @@
 <div class="row">
     <div class="col-md-12">
         <div class="alert alert-info">
-            Tambah atau Ubah Data Jurnal Disini kolom belum lengkap perlu konsul
+            Penyelesaian Administrasi Seminar
             <button type="button" class="close" data-dismiss="alert">&times;</button>
         </div>
         <div class="panel panel-indigo" id="panel-editable">
             <div class="panel-heading">
                 <h2>Tabel Jurnal</h2>
                 <div class="panel-ctrls"> 
-                    <div class="DTTT btn-group pull-left mt-sm mr-3">
-                    <a class="btn btn-indigo DTTT_button_text" id="ToolTables_crudtable_0"href="/jurnal/tambah"><i class="ti ti-plus"></i> <span>New</span></a>
-                    </div>
                     {{-- Mess Button --}}
                     {{-- <div class="DTTT btn-group pull-left mt-sm mr-3">
                         <a class="btn btn-default DTTT_button_text" id="ToolTables_crudtable_0"href="/parfum/mess"><i class="ti ti-plus"></i> <span>Mess</span></a>
@@ -65,9 +62,19 @@
                         @endif
                         <td> 
                             <div class="btn-group">
-                                <button type="button" data-toggle = "modal" class="btn btn-primary"><i class="ti ti-user"></i></button>
-                                <button type="button" class="btn btn-orange"><i class="ti ti-pencil-alt"></i></button>
-                                <button type="button" class="btn btn-danger btn-delete" data-toggle="tooltip"><i class="ti ti-trash"></i></button>
+                            @if ($jur -> pembayaran == 0)    
+                            <form action="{{url('/kesekretariatanupdate/'.$jur -> submission)}}" method="POST">
+                              @csrf
+                              <input type="hidden" name="pembayaran" id="" value="1">
+                              <button type="submit" data-toggle = "modal" class="btn btn-warning"><i class="ti ti-check"></i></button>
+                            </form>
+                            @else
+                            <form action="{{url('/kesekretariatanupdate/'.$jur -> submission)}}" method="POST">
+                              @csrf
+                              <input type="hidden" name="pembayaran" id="" value="1">
+                              <button type="submit" data-toggle = "modal" class="btn btn-success" disabled><i class="ti ti-check"></i></button>
+                            </form>
+                            @endif
                             </div>
                         </td>
                        </tr>

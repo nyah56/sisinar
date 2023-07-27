@@ -104,8 +104,10 @@
 										</ul>
 									</li>
 									
-									<li>
-
+									<li><a href="javascript:;"><i class="ti ti-receipt"></i><span>Kesekretariatan</span></a>
+										<ul class="acc-menu">
+											<li><a href="/kesekretariatan">kesekretariatan</a></li>
+										</ul>
 									</li>
 									
 								
