@@ -18,8 +18,13 @@ class SeminarController extends Controller
 
             'seminar' => $seminar,
         ]);
-    }
 
+    }
+    public function jsonSeminar(string $id)
+    {
+        $seminar = Seminar::find($id);
+        return response()->json($seminar);
+    }
     /**
      * Show the form for creating a new resource.
      */

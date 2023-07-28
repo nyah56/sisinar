@@ -32,22 +32,46 @@
                         </tr>
                     </thead>
                     <tbody class="text-center">
+                       @forelse ($jurnal as $jur)
                        <tr>
-                        <td>6139</td>
-                        <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Blanditiis molestias placeat suscipit </td>
-                        <td>Lorem ipsum dolor sit amet.</td>
-                        <td><a href="https://wa.me/62895601150286" target="_blank">+62895601150286</a></td>
-                        <td>SENIATI</td>
-                        <td><span class="label label-success">Paid</span></td>
-                        <td><span class="label label-success">Lunas</span></td>
+                        <td>{{$jur ->submission}}</td>
+                        <td>{{$jur ->judul}} </td>
+                        <td>{{$jur ->nama}}</td>
+                        <td><a href="https://wa.me/62{{$jur -> no_wa}}" target="_blank">{{$jur -> no_wa}}</a></td>
+                        <td>{{$jur->dataSeminar->jenis_seminar}}</td>
+                        @if ($jur->status == 1)
+                        <td><span class="label label-primary">Submision</span></td>
+                        @elseif($jur ->status == 2)
+                        <td><span class="label label-info">Review</span></td>
+                        @elseif($jur ->status == 3)
+                        <td><span class="label label-warning">Menunggu Revisi</span></td>
+                        @elseif($jur ->status == 4)
+                        <td><span class="label label-success">Accepted</span></td>
+                        @elseif($jur ->status == 5)
+                        <td><span class="label label-info">CopyEditing</span></td>
+                        @elseif($jur ->status == 6)
+                        <td><span class="label label-info">Production</span></td>
+                        @elseif($jur ->status == 7)
+                        <td><span class="label label-success">Publish</span></td>   
+                        @endif
+                        @if ($jur ->pembayaran == 0)
+                        <td><span class="label label-success">Belum Lunas</span></td>
+                      @elseif($jur ->pembayaran == 1)
+                       <td><span class="label label-success">Lunas</span></td>   
+                      @endif
                         <td> 
                             <div class="btn-group">
-                                <button type="button" data-toggle = "modal" data-target="#detailData" class="btn btn-primary btn-detail" data-detailId="1"><i class="ti ti-user"></i></button>
+                                <button type="button" data-toggle = "modal" data-target="#detailData" class="btn btn-primary btn-detail openModalButton" data-id="{{ $jur->submission }}"><i class="ti ti-user"></i></button>
                                 <button type="button" class="btn btn-orange"><i class="ti ti-pencil-alt"></i></button>
                                 <button type="button" class="btn btn-danger btn-delete" data-toggle="tooltip"><i class="ti ti-trash"></i></button>
                             </div>
                         </td>
                        </tr>
+                       @empty
+                        <tr>
+                          <td>Data Kosong</td>
+                        </tr>
+                       @endforelse
                         
                        
                     </tbody>
@@ -81,7 +105,7 @@
             icon: "success",
             });
           // form.submit();
-          console.log(id);
+          // console.log(id);
         } else {
           swal('Proses Hapus dibatalkan');
         }

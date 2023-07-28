@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Jurnal;
 use App\Models\Seminar;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,11 @@ class JurnalController extends Controller
     public function index()
     {
         //
-        return view('jurnal.jurnal');
+        $jurnal = Jurnal::all();
+        return view('jurnal.jurnal', [
+
+            'jurnal' => $jurnal,
+        ]);
     }
 
     /**
@@ -44,7 +49,21 @@ class JurnalController extends Controller
             'status' => 'required',
             'pembayaran' => 'required',
         ]);
-        dd($request->all());
+        // dd($request->all());
+        Jurnal::create([
+            'submission' => $request->submission,
+            'judul' => $request->judul,
+            'nama' => $request->nama,
+            'email' => $request->email,
+            'aviliasi' => $request->aviliasi,
+            'no_wa' => $request->wa,
+            'kode_seminar' => $request->kode_seminar,
+            'status' => $request->status,
+            'pembayaran' => $request->pembayaran,
+            'catatan' => $request->catatan,
+        ]);
+
+        return redirect('/jurnal');
     }
 
     /**
@@ -52,7 +71,10 @@ class JurnalController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $jurnal = Jurnal::find($id);
+
+        // Return the data in JSON format
+        return response()->json($jurnal);
     }
 
     /**

@@ -20,10 +20,12 @@ Route::get('/', function () {
     return view('dashboard');
 });
 Route::get('/jurnal', [JurnalController::class, 'index']);
+Route::get('/jurnal/detail/{id}', [JurnalController::class, 'show']);
 Route::get('/jurnal/tambah', [JurnalController::class, 'create']);
 Route::post('/jurnal/store', [JurnalController::class, 'store']);
 
 Route::get('/seminar', [SeminarController::class, 'index']);
+Route::get('/seminar/{id}', [SeminarController::class, 'jsonSeminar']);
 Route::get('/seminar/entry', [SeminarController::class, 'create']);
 Route::post('/seminar/store', [SeminarController::class, 'store']);
 Route::get('/seminar/edit/{id}', [SeminarController::class, 'edit']);
