@@ -47,6 +47,7 @@ class JurnalController extends Controller
             'wa' => 'required|numeric',
             'kode_seminar' => 'required',
             'status' => 'required',
+            'kehadiran' => 'required',
             'pembayaran' => 'required',
         ]);
         Jurnal::create([
@@ -58,6 +59,7 @@ class JurnalController extends Controller
             'no_wa' => $request-> wa,
             'kode_seminar' => $request-> kode_seminar,
             'status' => 0,
+            'kehadiran' => $request-> kehadiran,
             'pembayaran' => 0,
             'catatan' => $request->catatan
         ]);

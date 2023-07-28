@@ -10,7 +10,7 @@ class Jurnal extends Model
     use HasFactory;
     protected $table = 'tb_jurnal';
     protected $primaryKey = 'submission';
-    protected $fillable = ['submission','judul','nama','email','aviliasi','no_wa','kode_seminar','status','pembayaran','catatan'];
+    protected $fillable = ['submission','judul','nama','email','aviliasi','no_wa','kode_seminar','status','pembayaran','kehadiran','catatan'];
     public $timestamps = false;
 
     public function dataSeminar(){
