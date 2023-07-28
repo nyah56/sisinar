@@ -13,10 +13,7 @@
                     <div class="DTTT btn-group pull-left mt-sm mr-3">
                     <a class="btn btn-indigo DTTT_button_text" id="ToolTables_crudtable_0"href="/jurnal/tambah"><i class="ti ti-plus"></i> <span>New</span></a>
                     </div>
-                    {{-- Mess Button --}}
-                    {{-- <div class="DTTT btn-group pull-left mt-sm mr-3">
-                        <a class="btn btn-default DTTT_button_text" id="ToolTables_crudtable_0"href="/parfum/mess"><i class="ti ti-plus"></i> <span>Mess</span></a>
-                    </div> --}}
+                    
                 </div>
             </div>
             <div class="panel-body no-padding">
@@ -45,7 +42,7 @@
                         <td><span class="label label-success">Lunas</span></td>
                         <td> 
                             <div class="btn-group">
-                                <button type="button" data-toggle = "modal" class="btn btn-primary"><i class="ti ti-user"></i></button>
+                                <button type="button" data-toggle = "modal" data-target="#detailData" class="btn btn-primary btn-detail" data-detailId="1"><i class="ti ti-user"></i></button>
                                 <button type="button" class="btn btn-orange"><i class="ti ti-pencil-alt"></i></button>
                                 <button type="button" class="btn btn-danger btn-delete" data-toggle="tooltip"><i class="ti ti-trash"></i></button>
                             </div>
@@ -61,11 +58,11 @@
         </div>
     </div>
 </div>
-
+@include('layouts.detail-modal')
 @push('notif')
 <script>
     
-  
+    
      $(".btn-delete").click(function(e) {
       var id=$(this).attr('data-deleteid');
    
