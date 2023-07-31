@@ -69,21 +69,35 @@
                     @enderror
                 </div>
                 <div class="form-group 
-                @error('aviliasi')
+                @error('prodi')
                 has-error
                 @enderror">
-                    <label class="col-md-3 control-label">Aviliasi</label>
+                    <label class="col-md-3 control-label">Prodi</label>
                     <div class="col-md-6">
-                        <input type="text" name="aviliasi"class="form-control" value="{{ old('aviliasi') }}"placeholder="ITN Malang...">
+                        <input type="text" name="prodi"class="form-control" value="{{ old('prodi') }}"placeholder="Teknik Informatika">
                     </div>
-                    @error('aviliasi')
+                    @error('prodi')
                     <div class="col-md-3">
                         <p class="help-block"><i class="fa fa-times-circle"></i>
-                            Aviliasi tidak boleh kosong</p>
+                            Prodi tidak boleh kosong</p>
                     </div>
                     @enderror
                 </div>
-              
+                <div class="form-group 
+                @error('pt')
+                has-error
+                @enderror">
+                    <label class="col-md-3 control-label">Perguruan Tinggi</label>
+                    <div class="col-md-6">
+                        <input type="text" name="pt"class="form-control" value="{{ old('pt') }}"placeholder="ITN Malang...">
+                    </div>
+                    @error('pt')
+                    <div class="col-md-3">
+                        <p class="help-block"><i class="fa fa-times-circle"></i>
+                            Perguruan Tinggi tidak boleh kosong</p>
+                    </div>
+                    @enderror
+                </div>
                 <div class="form-group 
                 @error('wa')
                 has-error
