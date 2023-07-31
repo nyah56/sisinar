@@ -54,9 +54,9 @@
                         @elseif($jur ->status == 7)
                         <td><span class="label label-success">Publish</span></td>   
                         @endif
-                        @if ($jur ->pembayaran == 0)
+                        @if ($jur ->pembayaran == 1)
                         <td><span class="label label-success">Belum Lunas</span></td>
-                      @elseif($jur ->pembayaran == 1)
+                      @elseif($jur ->pembayaran == 2)
                        <td><span class="label label-success">Lunas</span></td>   
                       @endif
                         <td> 
