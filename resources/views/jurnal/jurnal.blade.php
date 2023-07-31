@@ -54,16 +54,16 @@
                         @elseif($jur ->status == 7)
                         <td><span class="label label-success">Publish</span></td>   
                         @endif
-                        @if ($jur ->pembayaran == 0)
+                        @if ($jur ->pembayaran == 1)
                         <td><span class="label label-success">Belum Lunas</span></td>
-                      @elseif($jur ->pembayaran == 1)
+                      @elseif($jur ->pembayaran == 2)
                        <td><span class="label label-success">Lunas</span></td>   
                       @endif
                         <td> 
                             <div class="btn-group">
                                 <button type="button" data-toggle = "modal" data-target="#detailData" class="btn btn-primary btn-detail openModalButton" data-id="{{ $jur->submission }}"><i class="ti ti-user"></i></button>
-                                <button type="button" class="btn btn-orange"><i class="ti ti-pencil-alt"></i></button>
-                                <button type="button" class="btn btn-danger btn-delete" data-toggle="tooltip"><i class="ti ti-trash"></i></button>
+                                <a type="button" class="btn btn-orange" href="/jurnaledit/{{ $jur ->submission }}"><i class="ti ti-pencil-alt"></i></a>
+                                <a type="button" class="btn btn-danger btn-delete" data-deleteId="{{ $jur ->submission}}" data-toggle="tooltip"><i class="ti ti-trash"></i></a>
                             </div>
                         </td>
                        </tr>
@@ -100,7 +100,7 @@
       })
       .then((willDelete) => {
         if (willDelete) {
-          window.location="/parfum/destroy/"+id+""
+          window.location="/jurnal/destroy/"+id+""
           swal("Data anda berhasil dihapus", {
             icon: "success",
             });

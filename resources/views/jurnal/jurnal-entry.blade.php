@@ -127,7 +127,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <label class="col-md-3 control-label">Status</label>
                     <div class="col-md-6">
                         <select  class="form-control" name="status" id="status" >
@@ -153,7 +153,7 @@
 						</label>
 					
 					</div>
-				</div>
+				</div> --}}
                 <div class="form-group">
                     <label class="col-md-3 control-label">Kehadiran</label>
                     <div class="col-md-6">
@@ -184,14 +184,14 @@
 @push('notif')
   <script>
     let seminar = document.getElementById('seminar');
-    let status =document.getElementById('status');
+  
     let kehadiran =document.getElementById('kehadiran');
     $("#btn-submit").click(function(e) {
     var form = $(this).closest("form");
     var name = $(this).data("name");
     e.preventDefault();
     // console.log(seminar.value);
-    if(seminar.value==0 || status.value==0|| kehadiran.value==0){
+    if(seminar.value==0 || kehadiran.value==0){
     swal({
         title: "Harap Pilih Jenis Seminar, Status dan Kehadiran",
         icon: 'warning'

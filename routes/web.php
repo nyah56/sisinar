@@ -23,6 +23,9 @@ Route::get('/jurnal', [JurnalController::class, 'index']);
 Route::get('/jurnal/detail/{id}', [JurnalController::class, 'show']);
 Route::get('/jurnal/tambah', [JurnalController::class, 'create']);
 Route::post('/jurnal/store', [JurnalController::class, 'store']);
+Route::get('/jurnaledit/{id}', [JurnalController::class, 'edit']);
+Route::put('/jurnal/update/{id}', [JurnalController::class, 'update']);
+Route::get('/jurnal/destroy/{id}', [JurnalController::class, 'destroy']);
 
 Route::get('/seminar', [SeminarController::class, 'index']);
 Route::get('/seminar/detail/{id}', [SeminarController::class, 'jsonSeminar']);

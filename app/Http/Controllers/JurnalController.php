@@ -39,27 +39,28 @@ class JurnalController extends Controller
         //
 
         $this->validate($request, [
-            'kode_seminar' => 'required|unique:tb_reviewer',
+            'submission' => 'required|unique:tb_jurnal',
             'judul' => 'required',
             'nama' => 'required',
             'email' => 'required|email:max:255',
-            'aviliasi' => 'required',
+            'prodi' => 'required',
+            'pt' => 'required',
             'wa' => 'required|numeric',
             'kode_seminar' => 'required',
-            'status' => 'required',
-            'pembayaran' => 'required',
+            'kehadiran' => 'required',
         ]);
-        // dd($request->all());
         Jurnal::create([
             'submission' => $request->submission,
             'judul' => $request->judul,
             'nama' => $request->nama,
             'email' => $request->email,
-            'aviliasi' => $request->aviliasi,
+            'prodi' => $request->prodi,
+            'pt' => $request->pt,
             'no_wa' => $request->wa,
             'kode_seminar' => $request->kode_seminar,
-            'status' => $request->status,
-            'pembayaran' => $request->pembayaran,
+            'status' => 1,
+            'kehadiran' => $request->kehadiran,
+            'pembayaran' => 1,
             'catatan' => $request->catatan,
         ]);
 
@@ -99,5 +100,8 @@ class JurnalController extends Controller
     public function destroy(string $id)
     {
         //
+        $jurnal = Jurnal::find($id);
+        $jurnal->delete();
+        return redirect('jurnal');
     }
 }
