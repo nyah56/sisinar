@@ -60,7 +60,7 @@
                 @enderror">
                     <label class="col-md-3 control-label">Email</label>
                     <div class="col-md-6">
-                        <input type="email" name="email"class="form-control" value="{{ $jurnal-> email }}">
+                        <input type="email" name="email"class="form-control" value="{{ $jurnal->email }}">
                     </div>
                     @error('email')
                     <div class="col-md-3">
@@ -70,21 +70,35 @@
                     @enderror
                 </div>
                 <div class="form-group 
-                @error('aviliasi')
+                @error('prodi')
                 has-error
                 @enderror">
-                    <label class="col-md-3 control-label">Aviliasi</label>
+                    <label class="col-md-3 control-label">Prodi</label>
                     <div class="col-md-6">
-                        <input type="text" name="aviliasi"class="form-control" value="{{ $jurnal->aviliasi }}"placeholder="ITN Malang...">
+                        <input type="text" name="prodi"class="form-control" value="{{ $jurnal->prodi }}"placeholder="Teknik Informatika">
                     </div>
-                    @error('aviliasi')
+                    @error('prodi')
                     <div class="col-md-3">
                         <p class="help-block"><i class="fa fa-times-circle"></i>
-                            Aviliasi tidak boleh kosong</p>
+                            Prodi tidak boleh kosong</p>
                     </div>
                     @enderror
                 </div>
-              
+                <div class="form-group 
+                @error('pt')
+                has-error
+                @enderror">
+                    <label class="col-md-3 control-label">Perguruan Tinggi</label>
+                    <div class="col-md-6">
+                        <input type="text" name="pt"class="form-control" value="{{ $jurnal->pt }}"placeholder="ITN Malang...">
+                    </div>
+                    @error('pt')
+                    <div class="col-md-3">
+                        <p class="help-block"><i class="fa fa-times-circle"></i>
+                            Perguruan Tinggi tidak boleh kosong</p>
+                    </div>
+                    @enderror
+                </div>
                 <div class="form-group 
                 @error('wa')
                 has-error
@@ -114,7 +128,9 @@
                         </select>
                     </div>
                 </div>
-                <div class="form-group">
+                <input type="hidden" value="{{$jurnal->status}}">
+                <input type="hidden" value="{{$jurnal->pembayaran}}">
+                {{-- <div class="form-group">
                     <label class="col-md-3 control-label">Status</label>
                     <div class="col-md-6">
                         <select  class="form-control" name="status" id="status" >
@@ -140,7 +156,7 @@
 						</label>
 					
 					</div>
-				</div>
+				</div> --}}
                 <div class="form-group">
                     <label class="col-md-3 control-label">Kehadiran</label>
                     <div class="col-md-6">
@@ -154,7 +170,7 @@
                 <div class="form-group">
 					<label class="col-md-3 control-label">Catatan</label>
 					<div class="col-md-6">
-						<textarea class="form-control autosize" name="catatan" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 237px;" ">{{ $jurnal->catatan }}</textarea>
+						<textarea class="form-control autosize" name="catatan" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 237px;">{{$jurnal->catatan}}</textarea>
 					</div>
 					<div class="col-sm-2"><p class="help-block">Tulis Catatan</p></div>
 				</div>
@@ -178,7 +194,7 @@
     var name = $(this).data("name");
     e.preventDefault();
     // console.log(seminar.value);
-    if(seminar.value==0 || status.value==0|| kehadiran.value==0){
+    if(seminar.value==0 || kehadiran.value==0){
     swal({
         title: "Harap Pilih Jenis Seminar, Status dan Kehadiran",
         icon: 'warning'

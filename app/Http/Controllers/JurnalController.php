@@ -99,12 +99,10 @@ class JurnalController extends Controller
             'nama' => 'required',
             'email' => 'required|email:max:255',
             'prodi' => 'required',
-            'pt' => 'pt',
+            'pt' => 'required',
             'wa' => 'required|numeric',
             'kode_seminar' => 'required',
-            'status' => 'required',
             'kehadiran' => 'required',
-            'pembayaran' => 'required',
         ]);
 
         $jurnal->update(['
@@ -116,9 +114,7 @@ class JurnalController extends Controller
         'pt' => $request-> pt,
         'no_wa' => $request-> wa,
         'kode_seminar' => $request-> kode_seminar,
-        'status' => $request-> status,
         'kehadiran' => $request-> kehadiran,
-        'pembayaran' => $request-> pembayaran,
         'catatan' => $request->catatan
     ]);
     return redirect('/jurnal');
