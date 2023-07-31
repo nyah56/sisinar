@@ -47,35 +47,10 @@
 
                       
                         
-                        {{-- @php
-                            $no=1+(($parfum->currentPage()-1)*$parfum->perPage()); 
-                        @endphp
-                        @forelse ($parfum as $p)
-
-                        <tr>
-                            <td>{{ $no++}}</td>
-                            <td>{{ $p->kode_barang }}</td>
-                            <td>{{ $p->nama_barang }}</td>
-                            <td>Rp. {{ number_format($p->h_beli )}}</td>
-                            <td>Rp. {{ number_format($p->h_agen) }}</td>
-                            <td >
-                                <a href="/parfum/edit/{{ $p->kode_barang}}" class="btn btn-warning btn-label d-inline"><i class="ti ti-pencil-alt"></i><span>Edit</span></a>
                         
-                                    
-                                <a class=" btn btn-danger btn-label btn-delete"href="#" data-toggle="tooltip" data-deleteid="{{ $p->kode_barang}}" title='Delete'><i class="ti ti-trash"></i><span>Delete</span></a>
-                            
-                            </td>
-                            
-                        </tr>
-                        @empty
-                            <tr>
-                                <td colspan="6">Data Tidak ada</td>
-                            </tr>
-                        @endforelse --}}
                     </tbody>
                 </table>
-                {{-- {{ $parfum->links() }} --}}
-                <!--end table-->
+           
                 
             </div>
         </div>

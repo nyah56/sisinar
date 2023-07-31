@@ -142,14 +142,15 @@
 										
 										<div class="panel-body">
 											
-											<form action="" class="form-horizontal" id="validate-form">
+											<form action="/tes/store" class="form-horizontal" id="validate-form" method="POST">
+												@csrf
 												<div class="form-group mb-md">
 													<div class="col-xs-12">
 														<div class="input-group">							
 															<span class="input-group-addon">
 																<i class="ti ti-user"></i>
 															</span>
-															<input type="text" class="form-control" placeholder="Username" data-parsley-minlength="6" placeholder="At least 6 characters" required>
+															<input type="text" name= "username" class="form-control" placeholder="Username" data-parsley-minlength="6" placeholder="At least 6 characters" required>
 														</div>
 													</div>
 												</div>
@@ -160,19 +161,19 @@
 															<span class="input-group-addon">
 																<i class="ti ti-key"></i>
 															</span>
-															<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+															<input type="password"  name= "password"class="form-control" id="exampleInputPassword1" placeholder="Password">
 														</div>
 													</div>
 												</div>
 					
-												
+												<div class="panel-footer">
+													<div class="clearfix">
+														<button type="submit"class="btn btn-indigo pull-right">Login</button>
+													</div>
+												</div>
 											</form>
 										</div>
-										<div class="panel-footer">
-											<div class="clearfix">
-												<a href="#" class="btn btn-indigo pull-right">Login</a>
-											</div>
-										</div>
+										
 									</div>
 									
 								</div><!-- /.modal-content -->
@@ -180,6 +181,7 @@
 						</div><!-- /.modal -->
 					</div> <!-- #page-content -->
 				</div>
+			
 				<footer role="contentinfo">
 					<div class="clearfix">
 						<ul class="list-unstyled list-inline pull-left">

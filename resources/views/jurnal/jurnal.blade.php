@@ -13,10 +13,7 @@
                     <div class="DTTT btn-group pull-left mt-sm mr-3">
                     <a class="btn btn-indigo DTTT_button_text" id="ToolTables_crudtable_0"href="/jurnal/tambah"><i class="ti ti-plus"></i> <span>New</span></a>
                     </div>
-                    {{-- Mess Button --}}
-                    {{-- <div class="DTTT btn-group pull-left mt-sm mr-3">
-                        <a class="btn btn-default DTTT_button_text" id="ToolTables_crudtable_0"href="/parfum/mess"><i class="ti ti-plus"></i> <span>Mess</span></a>
-                    </div> --}}
+                    
                 </div>
             </div>
             <div class="panel-body no-padding">
@@ -35,47 +32,46 @@
                         </tr>
                     </thead>
                     <tbody class="text-center">
-                      @forelse ($jurnal as $jur)    
-                      <tr>
-                        <td>{{$jur -> submission}}</td>
-                        <td>{{$jur -> judul}} </td>
-                        <td>{{$jur -> nama}}</td>
+                       @forelse ($jurnal as $jur)
+                       <tr>
+                        <td>{{$jur ->submission}}</td>
+                        <td>{{$jur ->judul}} </td>
+                        <td>{{$jur ->nama}}</td>
                         <td><a href="https://wa.me/62{{$jur -> no_wa}}" target="_blank">{{$jur -> no_wa}}</a></td>
                         <td>{{$jur->dataSeminar->jenis_seminar}}</td>
-                        @if ($jur->status == 0)
+                        @if ($jur->status == 1)
                         <td><span class="label label-primary">Submision</span></td>
-                        @elseif($jur -> status == 1)
+                        @elseif($jur ->status == 2)
                         <td><span class="label label-info">Review</span></td>
-                        @elseif($jur -> status == 2)
+                        @elseif($jur ->status == 3)
                         <td><span class="label label-warning">Menunggu Revisi</span></td>
-                        @elseif($jur -> status == 3)
+                        @elseif($jur ->status == 4)
                         <td><span class="label label-success">Accepted</span></td>
-                        @elseif($jur -> status == 4)
+                        @elseif($jur ->status == 5)
                         <td><span class="label label-info">CopyEditing</span></td>
-                        @elseif($jur -> status == 5)
+                        @elseif($jur ->status == 6)
                         <td><span class="label label-info">Production</span></td>
-                        @elseif($jur -> status == 6)
+                        @elseif($jur ->status == 7)
                         <td><span class="label label-success">Publish</span></td>   
                         @endif
-                        
-                        @if ($jur -> pembayaran == 0)
-                          <td><span class="label label-success">Belum Lunas</span></td>
-                        @elseif($jur -> pembayaran == 1)
-                         <td><span class="label label-success">Lunas</span></td>   
-                        @endif
+                        @if ($jur ->pembayaran == 0)
+                        <td><span class="label label-success">Belum Lunas</span></td>
+                      @elseif($jur ->pembayaran == 1)
+                       <td><span class="label label-success">Lunas</span></td>   
+                      @endif
                         <td> 
                             <div class="btn-group">
-                                <button type="button" data-toggle = "modal" class="btn btn-primary"><i class="ti ti-user"></i></button>
-                                <button type="button" class="btn btn-orange"><i class="ti ti-pencil-alt"></i></button>
-                                <button type="button" class="btn btn-danger btn-delete" data-toggle="tooltip"><i class="ti ti-trash"></i></button>
+                                <button type="button" data-toggle = "modal" data-target="#detailData" class="btn btn-primary btn-detail openModalButton" data-id="{{ $jur->submission }}"><i class="ti ti-user"></i></button>
+                                <a type="button" class="btn btn-orange" href="/jurnaledit/{{ $jur ->submission }}"><i class="ti ti-pencil-alt"></i></a>
+                                <a type="button" class="btn btn-danger btn-delete" href="/jurnal/destroy/{{ $jur ->submission}}" data-toggle="tooltip"><i class="ti ti-trash"></i></a>
                             </div>
                         </td>
                        </tr>
-                      @empty
-                          <tr>
-                            <td>Data Kosong</td>
-                          </tr>
-                      @endforelse 
+                       @empty
+                        <tr>
+                          <td>Data Kosong</td>
+                        </tr>
+                       @endforelse
                         
                        
                     </tbody>
@@ -86,30 +82,30 @@
         </div>
     </div>
 </div>
-
+@include('layouts.detail-modal')
 @push('notif')
 <script>
     
-  
+    
      $(".btn-delete").click(function(e) {
       var id=$(this).attr('data-deleteid');
    
       e.preventDefault();
       swal({
         title: 'Yakin ingin menghapus data?',
-        text: "Data dengan kode ini:"+id+" akan dihapus ",
+        text: "Data dengan kode ini:"+{{ $jur ->submission}}+" akan dihapus ",
         icon: 'warning',
         buttons: true,
         dangerMode: true,
       })
       .then((willDelete) => {
         if (willDelete) {
-          window.location="/parfum/destroy/"+id+""
+          window.location="/jurnal/destroy/"+{{ $jur ->submission}}+""
           swal("Data anda berhasil dihapus", {
             icon: "success",
             });
           // form.submit();
-          console.log(id);
+          // console.log(id);
         } else {
           swal('Proses Hapus dibatalkan');
         }
