@@ -114,7 +114,7 @@ document.querySelectorAll(".openModalButton").forEach((button) => {
                                           <div class="form-group">
                                               <label class="col-md-3 control-label">Catatan</label>
                                               <div class="col-md-8">
-                                                  <textarea class="form-control autosize" name="catatan" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 250px;" @disabled(true)></textarea>
+                                                  <textarea class="form-control autosize" name="catatan" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 250px;" disabled></textarea>
                                               </div>
                                             
                                           </div>
@@ -128,6 +128,7 @@ document.querySelectorAll(".openModalButton").forEach((button) => {
             const jenisSeminar = await fetchSeminar(data.kode_seminar);
             const statusLabel = statusLabels[data.status] || "Unknown";
             const paidLabel = paidLabels[data.pembayaran] || "Unknown";
+            const kehadiranLabel = kehadiranLabels[data.kehadiran] || "Unknown";
             modalDataContainer.innerHTML = `
             <form class="form-horizontal row-border" >
                                           
@@ -200,7 +201,7 @@ document.querySelectorAll(".openModalButton").forEach((button) => {
                                           <div class="form-group">
                                               <label class="col-md-3 control-label">Kehadiran</label>
                                               <div class="col-md-8">
-                                                  <input type="text" name="wa"class="form-control" value="Masih blum ada"disabled>
+                                                  <input type="text" name="wa"class="form-control" value="${kehadiranLabel}"disabled>
                                               </div>
                                               
                                           </div>
