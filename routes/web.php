@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\JurnalController;
 use App\Http\Controllers\ReviewerController;
 use App\Http\Controllers\SeminarController;
 use App\Http\Controllers\KesekretariatanController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterAdminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,10 +19,16 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
  */
-Route::post('/tes/store', [LoginController::class, 'tes']);
-Route::get('/', function () {
-    return view('dashboard');
+Route::post('/login/store', [LoginController::class, 'loginAction']);
+Route::get('/logout',[LoginController::class,'Logout']);
+
+Route::middleware(['auth','role:Admin'])->group(function (){
+    Route::get('/register/admin',[RegisterAdminController::class, 'index']);
+    Route::post('/register/admin/action',[RegisterAdminController::class, 'actionregister']);
 });
+
+Route::get('/', [DashboardController::class,'index'])->name('dashboard');
+//jurnal
 Route::get('/jurnal', [JurnalController::class, 'index']);
 Route::get('/jurnal/detail/{id}', [JurnalController::class, 'show']);
 Route::get('/jurnal/tambah', [JurnalController::class, 'create']);
@@ -28,7 +36,7 @@ Route::post('/jurnal/store', [JurnalController::class, 'store']);
 Route::get('/jurnaledit/{id}',[JurnalController::class, 'edit']);
 Route::put('/jurnal/update/{id}',[JurnalController::class, 'update']);
 Route::get('/jurnal/destroy/{id}',[JurnalController::class, 'destroy']);
-
+//seminar
 Route::get('/seminar', [SeminarController::class, 'index']);
 Route::get('/seminar/detail/{id}', [SeminarController::class, 'jsonSeminar']);
 Route::get('/seminar/entry', [SeminarController::class, 'create']);

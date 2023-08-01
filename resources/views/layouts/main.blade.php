@@ -76,7 +76,7 @@
 					<li><a href="#/"><span>Hi,Ibnu</span></a></li>
 					<li><a href="#/"><i class="ti ti-settings"></i><span>Profile Settings</span></a></li>
 				
-				{{-- <li><a href="{{ route('logout') }}"><i class="ti ti-shift-right"></i><span>Logout</span></a></li> --}}
+				<li><a href="{{ url('/logout') }}"><i class="ti ti-shift-right"></i><span>Logout</span></a></li>
 				</ul>
 			</li>
 
@@ -142,7 +142,7 @@
 										
 										<div class="panel-body">
 											
-											<form action="/tes/store" class="form-horizontal" id="validate-form" method="POST">
+											<form action="/login/store" class="form-horizontal" id="validate-form" method="POST">
 												@csrf
 												<div class="form-group mb-md">
 													<div class="col-xs-12">
