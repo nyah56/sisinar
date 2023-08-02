@@ -1,6 +1,11 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\JurnalController;
+use App\Http\Controllers\KesekretariatanController;
+use App\Http\Controllers\KoordinatorController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterAdminController;
 use App\Http\Controllers\ReviewerController;
 use App\Http\Controllers\SeminarController;
 use Illuminate\Support\Facades\Route;
@@ -15,10 +20,17 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
  */
-
-Route::get('/', function () {
-    return view('dashboard');
+Route::post('/login/store', [LoginController::class, 'loginAction']);
+Route::get('/logout', [LoginController::class, 'Logout']);
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+Route::middleware(['auth', 'role:Admin'])->group(function () {
+    Route::get('/register/admin', [RegisterAdminController::class, 'index']);
+    Route::post('/register/admin/action', [RegisterAdminController::class, 'actionregister']);
 });
+
+// Route::get('/register/admin', [RegisterAdminController::class, 'index']);
+// Route::post('/register/admin/action', [RegisterAdminController::class, 'actionregister']);
+
 Route::get('/jurnal', [JurnalController::class, 'index']);
 Route::get('/jurnal/detail/{id}', [JurnalController::class, 'show']);
 Route::get('/jurnal/tambah', [JurnalController::class, 'create']);
@@ -41,3 +53,9 @@ Route::post('/reviewer/store', [ReviewerController::class, 'store']);
 Route::get('/reviewer/edit/{id}', [ReviewerController::class, 'edit']);
 Route::put('/reviewer/update/{id}', [ReviewerController::class, 'update']);
 Route::get('/reviewer/destroy/{id}', [ReviewerController::class, 'destroy']);
+
+Route::get('/kesekretariatan', [KesekretariatanController::class, 'index']);
+Route::get('/kesekretariatan/edit/{id}', [KesekretariatanController::class, 'edit']);
+Route::put('/kesekretariatan/update/{id}', [KesekretariatanController::class, 'update']);
+
+Route::get('/koordinator', [KoordinatorController::class, 'index']);
