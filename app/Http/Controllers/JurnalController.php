@@ -83,7 +83,9 @@ class JurnalController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $jurnal = Jurnal::find($id);
+        $seminar = Seminar::all();
+        return view('jurnal.jurnal-edit',['jurnal' => $jurnal,'seminar'=>$seminar]);
     }
 
     /**
@@ -91,7 +93,31 @@ class JurnalController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $jurnal = Jurnal::find($id);
+        $this->validate($request, [
+            'judul' => 'required',
+            'nama' => 'required',
+            'email' => 'required|email:max:255',
+            'prodi' => 'required',
+            'pt' => 'required',
+            'wa' => 'required|numeric',
+            'kode_seminar' => 'required',
+            'kehadiran' => 'required',
+        ]);
+
+        $jurnal->update(['
+        submission' => $request->submission,
+        'judul' => $request->judul ,
+        'nama' => $request->nama,
+        'email' => $request-> email,
+        'prodi' => $request-> prodi,
+        'pt' => $request-> pt,
+        'no_wa' => $request-> wa,
+        'kode_seminar' => $request-> kode_seminar,
+        'kehadiran' => $request-> kehadiran,
+        'catatan' => $request->catatan
+    ]);
+    return redirect('/jurnal');
     }
 
     /**
