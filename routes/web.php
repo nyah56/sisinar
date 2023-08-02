@@ -53,5 +53,6 @@ Route::put('/reviewer/update/{id}', [ReviewerController::class, 'update']);
 Route::get('/reviewer/destroy/{id}', [ReviewerController::class, 'destroy']);
 // Kesekretariatan
 Route::get('/kesekretariatan',[KesekretariatanController::class,'index']);
-Route::post('/kesekretariatanupdate/{id}',[KesekretariatanController::class,'update']);
+Route::get('/kesekretariatan/edit/{id}',[KesekretariatanController::class, 'edit']);
+Route::put('/kesekretariatan/update/{id}',[KesekretariatanController::class,'update']);
 

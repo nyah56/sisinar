@@ -39,41 +39,33 @@
                         <td>{{$jur -> nama}}</td>
                         <td><a href="https://wa.me/62{{$jur -> no_wa}}" target="_blank">{{$jur -> no_wa}}</a></td>
                         <td>{{$jur->dataSeminar->jenis_seminar}}</td>
-                        @if ($jur->status == 0)
+                        @if ($jur->status == 1)
                         <td><span class="label label-primary">Submision</span></td>
-                        @elseif($jur -> status == 1)
+                        @elseif($jur ->status == 2)
                         <td><span class="label label-info">Review</span></td>
-                        @elseif($jur -> status == 2)
+                        @elseif($jur ->status == 3)
                         <td><span class="label label-warning">Menunggu Revisi</span></td>
-                        @elseif($jur -> status == 3)
+                        @elseif($jur ->status == 4)
                         <td><span class="label label-success">Accepted</span></td>
-                        @elseif($jur -> status == 4)
+                        @elseif($jur ->status == 5)
                         <td><span class="label label-info">CopyEditing</span></td>
-                        @elseif($jur -> status == 5)
+                        @elseif($jur ->status == 6)
                         <td><span class="label label-info">Production</span></td>
-                        @elseif($jur -> status == 6)
+                        @elseif($jur ->status == 7)
                         <td><span class="label label-success">Publish</span></td>   
                         @endif
                         
-                        @if ($jur -> pembayaran == 0)
-                          <td><span class="label label-success">Belum Lunas</span></td>
-                        @elseif($jur -> pembayaran == 1)
-                         <td><span class="label label-success">Lunas</span></td>   
+                        @if ($jur ->pembayaran == 1)
+                        <td><span class="label label-warning">Belum Lunas</span></td>
+                        @elseif($jur ->pembayaran == 2)
+                       <td><span class="label label-success">Lunas</span></td>   
                         @endif
                         <td> 
                             <div class="btn-group">
-                            @if ($jur -> pembayaran == 0)    
-                            <form action="{{url('/kesekretariatanupdate/'.$jur -> submission)}}" method="POST">
-                              @csrf
-                              <input type="hidden" name="pembayaran" id="" value="1">
-                              <button type="submit" data-toggle = "modal" class="btn btn-warning"><i class="ti ti-check"></i></button>
-                            </form>
+                            @if ($jur -> pembayaran == 1)    
+                            <a type="button" class="btn btn-orange" href="/kesekretariatan/edit/{{ $jur ->submission }}"><i class="ti ti-pencil-alt"></i></a>
                             @else
-                            <form action="{{url('/kesekretariatanupdate/'.$jur -> submission)}}" method="POST">
-                              @csrf
-                              <input type="hidden" name="pembayaran" id="" value="1">
-                              <button type="submit" data-toggle = "modal" class="btn btn-success" disabled><i class="ti ti-check"></i></button>
-                            </form>
+                            <a type="button" disabled class="btn btn-success" href="/kesekretariatan/edit/{{ $jur ->submission }}"><i class="ti ti-pencil-alt"></i></a>
                             @endif
                             </div>
                         </td>
