@@ -51,7 +51,8 @@ class KoordinatorController extends Controller
         $status = 0;
         $cekDetail = DetailJurnal::where('submission', '=', $id)->get()->first();
         foreach($request->input('reviewer')as $k){ 
-            $cekReviewer = DetailJurnal::where('id_reviewer', '=', $k)->get();
+            
+            $cekReviewer = DetailJurnal::where('id_reviewer', '=', $k)->exists();
             // $cekdoang = DetailJurnal::where('submission', $id)->where('id_reviewer',$request->reviewer[0])->get();
             // dd($cekdoang);
             
@@ -62,6 +63,7 @@ class KoordinatorController extends Controller
                     'id_reviewer' => $k,
                     'status' => $status
                 ]);
+                
             }else{// update data
                DetailJurnal::where('submission',$id)->where('status',$status)->update(['id_reviewer'=>$k]);
                
