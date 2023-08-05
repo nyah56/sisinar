@@ -6,7 +6,7 @@
     </div>
         <div class="panel-body">
             
-            <form action="{{ url('/kesekretariatan/update/'.$jurnal->submission) }}" id="form1" class="form-horizontal row-border" method="POST">
+            <form action="{{ url('/kesekretariatan/update/admin/'.$jurnal->submission) }}" id="form1" class="form-horizontal row-border" method="POST">
                 @csrf
                 @method('PUT')
                 <div class="form-group 
@@ -120,9 +120,8 @@
                     <label class="col-md-3 control-label">Jenis Seminar</label>
                     <div class="col-md-6">
                         <select  class="form-control" name="kode_seminar" id="seminar" disabled>
-                                <option value="0">Pilih Jenis Seminar</option>
                                 @forelse ($seminar as $s)
-                                <option value="{{$s->kode_seminar}}">{{ $s->jenis_seminar }}</option>
+                                <option value="{{$s->kode_seminar}}" @selected(old('kode_seminar' == $jurnal->kode_seminar)) {{ old('kode_seminar', $jurnal->kode_seminar) == $s->kode_seminar ? 'selected' : '' }} >{{ $s->jenis_seminar }}</option>
                                 @empty         
                                 <option value="">Kosong</option>
                                 @endforelse
@@ -132,7 +131,7 @@
                 <div class="form-group">
                     <label class="col-md-3 control-label">Status</label>
                     <div class="col-md-6">
-                        <select  class="form-control" name="status" id="status" disabled>
+                        <select  class="form-control" name="status" id="status">
                                 <option value="0">Pilih Status</option>
                                 <option value="1">Submission</option>
                                 <option value="2">Review</option>
@@ -160,9 +159,13 @@
                     <label class="col-md-3 control-label">Kehadiran</label>
                     <div class="col-md-6">
                         <select  class="form-control" name="kehadiran" id="kehadiran" >
-                                <option value="0">Pilih Kehadiran</option>
-                                <option value="1">Offline</option>
-                                <option value="2">Online</option>
+                            @if ($jurnal->kehadiran == 1)    
+                            <option value="1">Offline</option>
+                            <option value="2">Online</option>
+                            @elseif($jurnal->kehadiran == 2) 
+                            <option value="2">Online</option>
+                            <option value="1">Offline</option>
+                            @endif    
                         </select>
                     </div>
                 </div>

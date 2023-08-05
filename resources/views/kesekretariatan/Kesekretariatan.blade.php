@@ -10,10 +10,7 @@
             <div class="panel-heading">
                 <h2>Tabel Jurnal</h2>
                 <div class="panel-ctrls"> 
-                    {{-- Mess Button --}}
-                    {{-- <div class="DTTT btn-group pull-left mt-sm mr-3">
-                        <a class="btn btn-default DTTT_button_text" id="ToolTables_crudtable_0"href="/parfum/mess"><i class="ti ti-plus"></i> <span>Mess</span></a>
-                    </div> --}}
+                  
                 </div>
             </div>
             <div class="panel-body no-padding">
@@ -62,6 +59,7 @@
                         @endif
                         <td> 
                             <div class="btn-group">
+                              <button type="button" data-toggle = "modal" data-target="#detailData" class="btn btn-primary btn-detail openModalButton" data-id="{{ $jur->submission }}"><i class="ti ti-eye"></i></button>
                             @if ($jur -> pembayaran == 1)    
                             <a type="button" class="btn btn-orange" href="/kesekretariatan/edit/{{ $jur ->submission }}"><i class="ti ti-pencil-alt"></i></a>
                             @else
@@ -85,37 +83,7 @@
         </div>
     </div>
 </div>
+@include('layouts.detail-modal')
 
-@push('notif')
-<script>
-    
-  
-     $(".btn-delete").click(function(e) {
-      var id=$(this).attr('data-deleteid');
-   
-      e.preventDefault();
-      swal({
-        title: 'Yakin ingin menghapus data?',
-        text: "Data dengan kode ini:"+id+" akan dihapus ",
-        icon: 'warning',
-        buttons: true,
-        dangerMode: true,
-      })
-      .then((willDelete) => {
-        if (willDelete) {
-          window.location="/parfum/destroy/"+id+""
-          swal("Data anda berhasil dihapus", {
-            icon: "success",
-            });
-          // form.submit();
-          console.log(id);
-        } else {
-          swal('Proses Hapus dibatalkan');
-        }
-      });
-    });
-  
-  
-  </script>
-@endpush
+
 @endsection

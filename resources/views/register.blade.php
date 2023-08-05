@@ -28,9 +28,16 @@
                     <label><i class="fa fa-key"></i> Password</label>
                     <input type="password" name="password" class="form-control" placeholder="Password" required="">
                 </div>
+               
                 <div class="form-group">
-                    <label><i class="fa fa-address-book"></i> Role</label>
-                    <input type="text" name="role" class="form-control" value="Admin" readonly>
+                    <label class="col-md-3 control-label">Role</label>
+                  
+                        <select  class="form-control" name="role" id="status" >
+                                <option value="Admin">Admin</option>
+                                <option value="Koordinator">Koordinator</option>
+                                <option value="Kesekretariat">Kesekretariat</option>
+                        </select>
+                 
                 </div>
                 <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-user"></i> Register</button>
                 <hr>

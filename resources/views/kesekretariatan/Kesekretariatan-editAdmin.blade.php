@@ -2,11 +2,11 @@
 @section('isi')
 <div class="panel panel-indigo">
     <div class="panel-heading">
-        <h2>Entry Data Jurnal</h2>
+        <h2>Edit Kesekretariatan</h2>
     </div>
         <div class="panel-body">
             
-            <form action="{{ url('/jurnal/update/'.$jurnal->submission) }}" id="form1" class="form-horizontal row-border" method="POST">
+            <form action="{{ url('/kesekretariatan/update/admin/'.$jurnal->submission) }}" id="form1" class="form-horizontal row-border" method="POST">
                 @csrf
                 @method('PUT')
                 <div class="form-group 
@@ -30,7 +30,7 @@
                 @enderror">
                     <label class="col-md-3 control-label">Judul</label>
                     <div class="col-md-6">
-                        <input type="text" name="judul"class="form-control" value="{{ $jurnal->judul }}">
+                        <input type="text" name="judul"class="form-control" value="{{ $jurnal->judul }}" disabled>
                     </div>
                     @error('judul')
                     <div class="col-md-3">
@@ -45,7 +45,7 @@
                 @enderror">
                     <label class="col-md-3 control-label">Nama</label>
                     <div class="col-md-6">
-                        <input type="text" name="nama"class="form-control" value="{{ $jurnal->nama }}">
+                        <input type="text" name="nama"class="form-control" value="{{ $jurnal->nama }}" disabled>
                     </div>
                     @error('nama')
                     <div class="col-md-3">
@@ -60,7 +60,7 @@
                 @enderror">
                     <label class="col-md-3 control-label">Email</label>
                     <div class="col-md-6">
-                        <input type="email" name="email"class="form-control" value="{{ $jurnal->email }}">
+                        <input type="email" name="email"class="form-control" value="{{ $jurnal-> email }}" disabled>
                     </div>
                     @error('email')
                     <div class="col-md-3">
@@ -75,7 +75,7 @@
                 @enderror">
                     <label class="col-md-3 control-label">Prodi</label>
                     <div class="col-md-6">
-                        <input type="text" name="prodi"class="form-control" value="{{ $jurnal->prodi }}"placeholder="Teknik Informatika">
+                        <input type="text" name="prodi"class="form-control" value="{{ $jurnal->prodi }}"placeholder="Teknik Informatika" disabled>
                     </div>
                     @error('prodi')
                     <div class="col-md-3">
@@ -90,7 +90,7 @@
                 @enderror">
                     <label class="col-md-3 control-label">Perguruan Tinggi</label>
                     <div class="col-md-6">
-                        <input type="text" name="pt"class="form-control" value="{{ $jurnal->pt }}"placeholder="ITN Malang...">
+                        <input type="text" name="pt"class="form-control" value="{{ $jurnal->pt }}"placeholder="ITN Malang..." disabled>
                     </div>
                     @error('pt')
                     <div class="col-md-3">
@@ -99,13 +99,14 @@
                     </div>
                     @enderror
                 </div>
+              
                 <div class="form-group 
                 @error('wa')
                 has-error
                 @enderror">
                     <label class="col-md-3 control-label">No Whatsapp</label>
                     <div class="col-md-6">
-                        <input type="text" name="wa"class="form-control" value="{{ $jurnal->no_wa }}">
+                        <input type="text" name="wa"class="form-control" value="62{{ $jurnal->no_wa }}" disabled>
                     </div>
                     <div class="col-sm-3"><p class="help-block">6281234567890</p></div>
                     @error('wa')
@@ -118,24 +119,20 @@
                 <div class="form-group">
                     <label class="col-md-3 control-label">Jenis Seminar</label>
                     <div class="col-md-6">
-                        <select  class="form-control" name="kode_seminar" id="seminar" >
-                               
-                            {{-- <option value="0">Pilih Jenis Seminar</option> --}}
-                            @forelse ($seminar as $s)
-                            <option value="{{$s->kode_seminar}}" @selected(old('kode_seminar' == $jurnal->kode_seminar)) {{ old('kode_seminar', $jurnal->kode_seminar) == $s->kode_seminar ? 'selected' : '' }}>{{ $s->jenis_seminar }}</option>
-                            @empty         
-                            <option value="">Kosong</option>
-                            @endforelse
-        
+                        <select  class="form-control" name="kode_seminar" id="seminar" disabled>
+                                <option value="0">Pilih Jenis Seminar</option>
+                                @forelse ($seminar as $s)
+                                <option value="{{$s->kode_seminar}}" @selected(old('kode_seminar' == $jurnal->kode_seminar)) {{ old('kode_seminar', $jurnal->kode_seminar) == $s->kode_seminar ? 'selected' : '' }} >{{ $s->jenis_seminar }}</option>
+                                @empty         
+                                <option value="">Kosong</option>
+                                @endforelse
                         </select>
                     </div>
                 </div>
-                <input type="hidden" value="{{$jurnal->status}}">
-                <input type="hidden" value="{{$jurnal->pembayaran}}">
-                {{-- <div class="form-group">
+                <div class="form-group">
                     <label class="col-md-3 control-label">Status</label>
                     <div class="col-md-6">
-                        <select  class="form-control" name="status" id="status" >
+                        <select  class="form-control" name="status" id="status" disabled>
                                 <option value="0">Pilih Status</option>
                                 <option value="1">Submission</option>
                                 <option value="2">Review</option>
@@ -151,19 +148,18 @@
 					<label class="col-md-3 control-label">Pembayaran</label>
 					<div class="col-md-6">
 						<label class="radio-inline icheck">
-							<div class="iradio_minimal-blue" style="position: relative;"><input type="radio" name ="pembayaran" id="inlineradio1" value="0" name="optionsRadiosInline" style="position: absolute; opacity: 0;" checked="checked"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> Belum Lunas
+							<div class="iradio_minimal-blue" style="position: relative;"><input  type="radio" name ="pembayaran" id="inlineradio1" value="1" name="optionsRadiosInline" style="position: absolute; opacity: 0;" ><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> Belum Lunas
 						</label>
 						<label class="radio-inline icheck">
-							<div class="iradio_minimal-blue" style="position: relative;"><input type="radio" name ="pembayaran" id="inlineradio2" value="1" name="optionsRadiosInline" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> Lunas
+							<div class="iradio_minimal-blue" style="position: relative;"><input type="radio" name ="pembayaran" id="inlineradio2" value="2" name="optionsRadiosInline" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> Lunas
 						</label>
 					
 					</div>
-				</div> --}}
+				</div>
                 <div class="form-group">
                     <label class="col-md-3 control-label">Kehadiran</label>
                     <div class="col-md-6">
                         <select  class="form-control" name="kehadiran" id="kehadiran" >
-                            
                             @if ($jurnal->kehadiran == 1)    
                             <option value="1">Offline</option>
                             <option value="2">Online</option>
@@ -177,7 +173,7 @@
                 <div class="form-group">
 					<label class="col-md-3 control-label">Catatan</label>
 					<div class="col-md-6">
-						<textarea class="form-control autosize" name="catatan" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 237px;">{{$jurnal->catatan}}</textarea>
+						<textarea class="form-control autosize" name="catatan" disabled style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 237px;" ">{{ $jurnal->catatan }}</textarea>
 					</div>
 					<div class="col-sm-2"><p class="help-block">Tulis Catatan</p></div>
 				</div>
@@ -192,18 +188,16 @@
     </div>
 </div>
 @push('notif')
-  <script>
-    let seminar = document.getElementById('seminar');
-    let status =document.getElementById('status');
+  <script> 
     let kehadiran =document.getElementById('kehadiran');
     $("#btn-submit").click(function(e) {
     var form = $(this).closest("form");
     var name = $(this).data("name");
     e.preventDefault();
     // console.log(seminar.value);
-    if(seminar.value==0 || kehadiran.value==0){
+    if(kehadiran.value==0){
     swal({
-        title: "Harap Pilih Jenis Seminar, Status dan Kehadiran",
+        title: "Harap Mengisi Kehadiran",
         icon: 'warning'
     });
     }

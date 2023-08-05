@@ -61,24 +61,29 @@
 		</div><!-- logo-area -->
 
 		<ul class="nav navbar-nav toolbar pull-right">
-			<li class="toolbar-icon-bg hidden-xs">
-				<a data-toggle="modal" href="#login"><span class="icon-bg"><i class="fa fa-sign-in"></i></span></a>
-			</li>
-			
-			{{-- rendering condition by user logged in --}}
-			
-		
+			@auth
 			<li class="toolbar-icon-bg hidden-xs">
 				<a class="logged-in" href="#"  data-toggle="dropdown">
 					<span class="icon-bg"><i class="fa fa-user"></i></span>
 				</a>
 				<ul class="dropdown-menu userinfo arrow">
-					<li><a href="#/"><span>Hi,Ibnu</span></a></li>
+					<li><a href="#/"><span>Hi,{{ Auth::user()->username }}</span></a></li>
 					<li><a href="#/"><i class="ti ti-settings"></i><span>Profile Settings</span></a></li>
 				
 				<li><a href="{{ url('/logout') }}"><i class="ti ti-shift-right"></i><span>Logout</span></a></li>
 				</ul>
 			</li>
+			@else
+			<li class="toolbar-icon-bg hidden-xs">
+				<a data-toggle="modal" href="#login"><span class="icon-bg"><i class="fa fa-sign-in"></i></span></a>
+			</li>
+			@endauth
+			
+			
+			{{-- rendering condition by user logged in --}}
+			
+		
+			
 
 		</ul>
 
@@ -95,20 +100,43 @@
 								<ul class="acc-menu">
 									<li class="nav-separator"><span>Explore</span></li>
 									<li><a href="/"><i class="ti ti-home"></i><span>Dashboard</span></a></li>
+									@if (auth()->check())	
+									@php
+										$user = auth()->user();
+									@endphp
+										@if ($user->role == "Admin")
+											<li><a href="javascript:;"><i class="ti ti-settings"></i><span>Admin</span></a>
+												<ul class="acc-menu">
+													<li><a href="/jurnal">Tabel Jurnal</a></li>
+													<li><a href="/seminar">Tabel Jenis Seminar</a></li>
+													<li><a href="/reviewer">Tabel Reviewer</a></li>
+												</ul>
+											</li>
+											<li><a href="javascript:;"><i class="ti ti-receipt"></i><span>Kesekretariatan</span></a>
+												<ul class="acc-menu">
+													<li><a href="/kesekretariatan/admin">kesekretariatan</a></li>
+												</ul>
+											</li>
+											<li><a href="javascript:;"><i class="ti ti-receipt"></i><span>Koordinator</span></a>
+												<ul class="acc-menu">
+													<li><a href="/koordinator/admin">Koordinator</a></li>
+												</ul>
+											</li>
+										@elseif($user->role == "Kesekretariat")
+										<li><a href="javascript:;"><i class="ti ti-receipt"></i><span>Kesekretariatan</span></a>
+											<ul class="acc-menu">
+												<li><a href="/kesekretariatan">kesekretariatan</a></li>
+											</ul>
+										</li>
+										@elseif($user->role == "Koordinator")
+										<li><a href="javascript:;"><i class="ti ti-receipt"></i><span>Koordinator</span></a>
+											<ul class="acc-menu">
+												<li><a href="/koordinator">Koordinator</a></li>
+											</ul>
+										</li>
+										@endif
+									@endif
 									
-									<li><a href="javascript:;"><i class="ti ti-settings"></i><span>Admin</span></a>
-										<ul class="acc-menu">
-											<li><a href="/jurnal">Tabel Jurnal</a></li>
-											<li><a href="/seminar">Tabel Jenis Seminar</a></li>
-											<li><a href="/reviewer">Tabel Reviewer</a></li>
-										</ul>
-									</li>
-									
-									<li><a href="javascript:;"><i class="ti ti-receipt"></i><span>Kesekretariatan</span></a>
-										<ul class="acc-menu">
-											<li><a href="/kesekretariatan">kesekretariatan</a></li>
-										</ul>
-									</li>
 									
 								
 
@@ -136,7 +164,8 @@
 								<div class="modal-content col-md-8 col-md-offset-2">
 									<div class="modal-header">
 										{{-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> --}}
-										<h3 class="modal-title">LOGIN SISINAR</h2>
+										<h3 class="modal-title">LOGIN S3</h2>
+										<h5>Seminari Seniati,Semsina</h5>
 									</div>
 									<div class="modal-body">
 										
@@ -243,6 +272,7 @@
 
 @stack('notif')
 @stack('text')
+@stack('add')
 </body>
 
 

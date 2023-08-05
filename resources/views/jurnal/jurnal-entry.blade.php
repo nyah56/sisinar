@@ -184,7 +184,7 @@
 @push('notif')
   <script>
     let seminar = document.getElementById('seminar');
-    let status =document.getElementById('status');
+  
     let kehadiran =document.getElementById('kehadiran');
     $("#btn-submit").click(function(e) {
     var form = $(this).closest("form");

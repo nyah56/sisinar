@@ -1,6 +1,6 @@
 const fetchSeminar = async (id) => {
     try {
-        const response = await fetch(`/seminar/${id}`);
+        const response = await fetch(`/seminar/detail/${id}`);
         const data = await response.json();
         return data.jenis_seminar;
     } catch (error) {
@@ -18,12 +18,12 @@ const statusLabels = {
     7: "Publish",
 };
 const paidLabels = {
-    0: "Belum Lunas",
-    1: "Lunas",
+    1: "Belum Lunas",
+    2: "Lunas",
 };
 const kehadiranLabels = {
-    0: "Offline",
-    1: "Online",
+    1: "Offline",
+    2: "Online",
 };
 let detail = document.querySelectorAll(".btn-detail");
 document.querySelectorAll(".openModalButton").forEach((button) => {
@@ -63,13 +63,19 @@ document.querySelectorAll(".openModalButton").forEach((button) => {
                                              
                                           </div>
                                           <div class="form-group">
-                                              <label class="col-md-3 control-label">Aviliasi</label>
+                                              <label class="col-md-3 control-label">Prodi</label>
                                               <div class="col-md-8">
                                                   <input type="text" name="aviliasi"class="form-control" value=""disabled>
                                               </div>
                                               
                                           </div>
-                                        
+                                          <div class="form-group">
+                                            <label class="col-md-3 control-label">Perguruan Tinggi</label>
+                                            <div class="col-md-8">
+                                                <input type="text" name="aviliasi"class="form-control" value=""disabled>
+                                            </div>
+                                          
+                                         </div>
                                           <div class="form-group">
                                               <label class="col-md-3 control-label">No.WA</label>
                                               <div class="col-md-8">
@@ -108,7 +114,7 @@ document.querySelectorAll(".openModalButton").forEach((button) => {
                                           <div class="form-group">
                                               <label class="col-md-3 control-label">Catatan</label>
                                               <div class="col-md-8">
-                                                  <textarea class="form-control autosize" name="catatan" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 250px;" @disabled(true)></textarea>
+                                                  <textarea class="form-control autosize" name="catatan" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 250px;" disabled></textarea>
                                               </div>
                                             
                                           </div>
@@ -122,6 +128,7 @@ document.querySelectorAll(".openModalButton").forEach((button) => {
             const jenisSeminar = await fetchSeminar(data.kode_seminar);
             const statusLabel = statusLabels[data.status] || "Unknown";
             const paidLabel = paidLabels[data.pembayaran] || "Unknown";
+            const kehadiranLabel = kehadiranLabels[data.kehadiran] || "Unknown";
             modalDataContainer.innerHTML = `
             <form class="form-horizontal row-border" >
                                           
@@ -150,13 +157,19 @@ document.querySelectorAll(".openModalButton").forEach((button) => {
                                              
                                           </div>
                                           <div class="form-group">
-                                              <label class="col-md-3 control-label">Aviliasi</label>
+                                              <label class="col-md-3 control-label">Prodi</label>
                                               <div class="col-md-8">
-                                                  <input type="text" name="aviliasi"class="form-control" value="${data.aviliasi}"disabled>
+                                                  <input type="text" name="aviliasi"class="form-control" value="${data.prodi}"disabled>
                                               </div>
                                               
                                           </div>
-                                        
+                                          <div class="form-group">
+                                            <label class="col-md-3 control-label">Perguruan Tinggi</label>
+                                            <div class="col-md-8">
+                                                <input type="text" name="aviliasi"class="form-control" value="${data.pt}"disabled>
+                                            </div>
+                                          
+                                         </div>
                                           <div class="form-group">
                                               <label class="col-md-3 control-label">No.WA</label>
                                               <div class="col-md-8">
@@ -188,7 +201,7 @@ document.querySelectorAll(".openModalButton").forEach((button) => {
                                           <div class="form-group">
                                               <label class="col-md-3 control-label">Kehadiran</label>
                                               <div class="col-md-8">
-                                                  <input type="text" name="wa"class="form-control" value="Masih blum ada"disabled>
+                                                  <input type="text" name="wa"class="form-control" value="${kehadiranLabel}"disabled>
                                               </div>
                                               
                                           </div>

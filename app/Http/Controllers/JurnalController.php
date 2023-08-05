@@ -51,17 +51,17 @@ class JurnalController extends Controller
         ]);
         Jurnal::create([
             'submission' => $request->submission,
-            'judul' => $request->judul ,
+            'judul' => $request->judul,
             'nama' => $request->nama,
-            'email' => $request-> email,
-            'prodi' => $request-> prodi,
-            'pt' => $request-> pt,
-            'no_wa' => $request-> wa,
-            'kode_seminar' => $request-> kode_seminar,
+            'email' => $request->email,
+            'prodi' => $request->prodi,
+            'pt' => $request->pt,
+            'no_wa' => $request->wa,
+            'kode_seminar' => $request->kode_seminar,
             'status' => 1,
-            'kehadiran' => $request-> kehadiran,
+            'kehadiran' => $request->kehadiran,
             'pembayaran' => 1,
-            'catatan' => $request->catatan
+            'catatan' => $request->catatan,
         ]);
 
         return redirect('/jurnal');
@@ -125,6 +125,7 @@ class JurnalController extends Controller
      */
     public function destroy(string $id)
     {
+        //
         $jurnal = Jurnal::find($id);
         $jurnal->delete();
         return redirect('jurnal');

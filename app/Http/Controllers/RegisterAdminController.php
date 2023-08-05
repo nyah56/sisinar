@@ -1,19 +1,18 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\UserModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
-
 class RegisterAdminController extends Controller
 {
+    //
     public function index()
     {
         return view('register');
     }
-    
+
     public function actionregister(Request $request)
     {
         $user = UserModel::create([

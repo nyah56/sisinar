@@ -1,0 +1,6 @@
+js tidak jadi(gagal)
+opsi 2 select pertama harus,
+select ke 2 opsional
+
+select pertama value dari database sama seperti template
+select ke 2 sama kaya select 1 tapi value -1 kosong belum di select
