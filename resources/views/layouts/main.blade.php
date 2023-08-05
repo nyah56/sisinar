@@ -272,6 +272,7 @@
 
 @stack('notif')
 @stack('text')
+@stack('add')
 </body>
 
 

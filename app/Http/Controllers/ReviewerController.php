@@ -16,6 +16,11 @@ class ReviewerController extends Controller
             'reviewer' => $reviewer,
         ]);
     }
+    public function fetchReviewer()
+    {
+        $reviewer = Reviewer::all();
+        return response()->json($reviewer);
+    }
 
     /**
      * Show the form for creating a new resource.

@@ -53,9 +53,12 @@ Route::post('/reviewer/store', [ReviewerController::class, 'store']);
 Route::get('/reviewer/edit/{id}', [ReviewerController::class, 'edit']);
 Route::put('/reviewer/update/{id}', [ReviewerController::class, 'update']);
 Route::get('/reviewer/destroy/{id}', [ReviewerController::class, 'destroy']);
+Route::get('/reviewer/fetch', [ReviewerController::class, 'fetchReviewer']);
 
 Route::get('/kesekretariatan', [KesekretariatanController::class, 'index']);
 Route::get('/kesekretariatan/edit/{id}', [KesekretariatanController::class, 'edit']);
 Route::put('/kesekretariatan/update/{id}', [KesekretariatanController::class, 'update']);
 
 Route::get('/koordinator', [KoordinatorController::class, 'index']);
+Route::get('/koordinator/edit/{id}', [KoordinatorController::class, 'edit']);
+Route::put('/koordinator/update/{id}', [KoordinatorController::class, 'update']);
