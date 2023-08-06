@@ -151,7 +151,7 @@
 						
 						
                         <label class="checkbox-inline icheck">
-							<div class="icheckbox_minimal-blue checked" style="position: relative;"><input type="checkbox" name="pembayaran"id="pembayaran" value="2" style="position: absolute; opacity: 0;"@checked($jurnal->pembayaran==2)><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> Lunas
+							<div class="icheckbox_minimal-blue checked" style="position: relative;"><input type="checkbox" name="pembayaran" id="pembayaran" value="2" style="position: absolute; opacity: 0;"@checked($jurnal->pembayaran==2)><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> Lunas
 						</label>
 					</div>
                     
@@ -159,13 +159,14 @@
                 <div class="form-group">
                     <label class="col-md-3 control-label">Kehadiran</label>
                     <div class="col-md-6">
-                        <select  class="form-control" name="kehadiran" id="kehadiran" >
+                        <select  class="form-control" name="kehadiran" id="kehadiran">
                                 <option value="0">Pilih Kehadiran</option>
                                 <option value="1"@selected($jurnal->kehadiran==1)>Offline</option>
                                 <option value="2"@selected($jurnal->kehadiran==2)>Online</option>
                         </select>
                     </div>
                 </div>
+                <input type="hidden" data-kehadiran="{{ $jurnal->kehadiran }}">
                 <div class="form-group">
 					<label class="col-md-3 control-label">Catatan</label>
 					<div class="col-md-6">
@@ -186,31 +187,31 @@
     </div>
 </div>
 @push('notif')
-  <script> 
+  <script>
+    // Wait for the document to be ready
+
+    
+
     let kehadiran =document.getElementById('kehadiran');
-    let pembayaran =document.getElementById('kehadiran');
-    console.log(pembayaran.value);
+    // let pembayaran =document.getElementById('pembayaran');
+    // console.log(pembayaran.value);
+    
     $("#btn-submit").click(function(e) {
     var form = $(this).closest("form");
     var name = $(this).data("name");
     e.preventDefault();
-    // console.log(seminar.value);
+    console.log(pembayaran.value);
     if(kehadiran.value==0){
-    swal({
-        title: "Harap Mengisi Kehadiran",
-        icon: 'warning'
-    });
+        swal({
+            title: "Harap Mengisi Kehadiran",
+            icon: 'warning'
+        });
     }
     
     else{
-       if(pembayaran.value==1){
-        $("#btn-submit").attr("disabled",true);
-        form.submit();
-       }
-       else{
-            swal({
-        title: 'Apakah anda Yakin ingin Melunaskan Pembayaran?',
-        text: 'Data yang telah Lunas tidak dapat diubah maupun dihapus',
+        swal({
+        title: 'Apakah anda yakin melunaskan Pembayaran ?',
+        text: 'Cek Lagi Pembayaran,Apabila Pembayaran yang akan di submit dicentang "Lunas".Ketika di submit,data tidak dapat diubah maupun dihapus',
         icon: 'warning',
         buttons: true,
         dangerMode: true,
@@ -220,10 +221,9 @@
             $("#btn-submit").attr("disabled",true);
             form.submit();
         } else {
-            swal('Proses Validasi dibatalkan');
+            swal('Proses Submit dibatalkan');
         }
         });
-        }
      }
     
   });
