@@ -132,28 +132,24 @@
                 <div class="form-group">
                     <label class="col-md-3 control-label">Status</label>
                     <div class="col-md-6">
-                        <select  class="form-control" name="status" id="status">
-                                <option value="0">Pilih Status</option>
-                                <option value="1">Submission</option>
-                                <option value="2">Review</option>
-                                <option value="3">Menunggu Revisi</option>
-                                <option value="4">Accepted</option>
-                                <option value="5">CopyEditing</option>
-                                <option value="6">Production</option>
-                                <option value="7">Publish</option>
-                        </select>
+                        <select  class="form-control" name="status" id="status" >
+                            <option value="0">Pilih Status</option>
+                            <option value="1"@selected($jurnal->status == 1)>Submission</option>
+                            <option value="2"@selected($jurnal->status == 2)>Review</option>
+                            <option value="3"@selected($jurnal->status == 3)>Menunggu Revisi</option>
+                            <option value="4"@selected($jurnal->status == 4)>Accepted</option>
+                            <option value="5"@selected($jurnal->status == 5)>CopyEditing</option>
+                            <option value="6"@selected($jurnal->status == 6)>Production</option>
+                            <option value="7"@selected($jurnal->status == 7)>Publish</option>
+                    </select>
                     </div>
                 </div>
                 <div class="form-group">
 					<label class="col-md-3 control-label">Pembayaran</label>
-					<div class="col-md-6">
-						<label class="radio-inline icheck">
-							<div class="iradio_minimal-blue" style="position: relative;"><input  type="radio" name ="pembayaran" id="inlineradio1" value="1" name="optionsRadiosInline" style="position: absolute; opacity: 0;" checked="checked"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> Belum Lunas
+					<div class="col-md-6">					
+                        <label class="checkbox-inline icheck">
+							<div class="icheckbox_minimal-blue checked" style="position: relative;"><input type="checkbox" name="pembayaran"id="pembayaran" value="2" style="position: absolute; opacity: 0;"@checked($jurnal->pembayaran==2) @disabled(true)><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> Lunas
 						</label>
-						<label class="radio-inline icheck">
-							<div class="iradio_minimal-blue" style="position: relative;"><input type="radio" name ="pembayaran" id="inlineradio2" value="2" name="optionsRadiosInline" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> Lunas
-						</label>
-					
 					</div>
 				</div>
                 <div class="form-group">
@@ -166,7 +162,7 @@
                                 @endforeach
                         </select>
                     </div>
-                    <button type="button" class="btn btn-primary"id="btn-add"> <i class="ti ti-eye"></i></button>
+                    <button type="button" class="btn btn-primary"id="btn-add"> <i class="ti ti-plus"></i></button>
                 </div>
               <div id="add">
                 
@@ -174,7 +170,7 @@
                 <div class="form-group">
 					<label class="col-md-3 control-label">Catatan</label>
 					<div class="col-md-6">
-						<textarea class="form-control autosize" name="catatan" disabled style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 237px;" ">{{ $jurnal->catatan }}</textarea>
+						<textarea class="form-control autosize" name="catatan" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 237px;" ">{{ $jurnal->catatan }}</textarea>
 					</div>
 					<div class="col-sm-2"><p class="help-block">Tulis Catatan</p></div>
 				</div>
@@ -192,6 +188,7 @@
     <script>
         const btnAdd= document.getElementById('btn-add');
         const newInput= document.getElementById('add');
+        const iconElement = btnAdd.querySelector('.ti');
         let state=true;
         const fetchReviewer=async()=>{
             try {
@@ -209,6 +206,8 @@
         let optionsData=await fetchReviewer();
         // console.log(state);
          if (!state){
+            iconElement.classList.remove('ti-plus');
+            iconElement.classList.add('ti-minus')
             // options.array.forEach(option => {
             //     const optionElement = document.createElement('option');
             //     optionElement.value=option.id_reviewer;
@@ -241,6 +240,8 @@
                     </div>`;
          }
          else{
+            iconElement.classList.remove('ti-minus');
+            iconElement.classList.add('ti-plus')
             newInput.innerHTML='';
          }
         })

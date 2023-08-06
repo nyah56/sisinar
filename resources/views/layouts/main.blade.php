@@ -125,7 +125,7 @@
 										@elseif($user->role == "Kesekretariat")
 										<li><a href="javascript:;"><i class="ti ti-receipt"></i><span>Kesekretariatan</span></a>
 											<ul class="acc-menu">
-												<li><a href="/kesekretariatan">kesekretariatan</a></li>
+												<li><a href="/kesekretariatan">Kesekretariatan</a></li>
 											</ul>
 										</li>
 										@elseif($user->role == "Koordinator")

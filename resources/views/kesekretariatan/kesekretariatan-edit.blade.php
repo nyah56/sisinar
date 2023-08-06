@@ -122,7 +122,7 @@
                         <select  class="form-control" name="kode_seminar" id="seminar" disabled>
                                 <option value="0">Pilih Jenis Seminar</option>
                                 @forelse ($seminar as $s)
-                                <option value="{{$s->kode_seminar}}">{{ $s->jenis_seminar }}</option>
+                                <option value="{{$s->kode_seminar}}"@selected($s->kode_seminar == $jurnal->kode_seminar)>{{ $s->jenis_seminar }}</option>
                                 @empty         
                                 <option value="">Kosong</option>
                                 @endforelse
@@ -132,52 +132,54 @@
                 <div class="form-group">
                     <label class="col-md-3 control-label">Status</label>
                     <div class="col-md-6">
-                        <select  class="form-control" name="status" id="status">
+                        <select  class="form-control" name="status" id="status" >
                                 <option value="0">Pilih Status</option>
-                                <option value="1">Submission</option>
-                                <option value="2">Review</option>
-                                <option value="3">Menunggu Revisi</option>
-                                <option value="4">Accepted</option>
-                                <option value="5">CopyEditing</option>
-                                <option value="6">Production</option>
-                                <option value="7">Publish</option>
+                                <option value="1"@selected($jurnal->status == 1)>Submission</option>
+                                <option value="2"@selected($jurnal->status == 2)>Review</option>
+                                <option value="3"@selected($jurnal->status == 3)>Menunggu Revisi</option>
+                                <option value="4"@selected($jurnal->status == 4)>Accepted</option>
+                                <option value="5"@selected($jurnal->status == 5)>CopyEditing</option>
+                                <option value="6"@selected($jurnal->status == 6)>Production</option>
+                                <option value="7"@selected($jurnal->status == 7)>Publish</option>
                         </select>
                     </div>
                 </div>
+                <input name = "pembayaran"type="hidden" value="{{$jurnal->pembayaran}}">
                 <div class="form-group">
 					<label class="col-md-3 control-label">Pembayaran</label>
 					<div class="col-md-6">
-						<label class="radio-inline icheck">
-							<div class="iradio_minimal-blue" style="position: relative;"><input  type="radio" name ="pembayaran" id="inlineradio1" value="1" name="optionsRadiosInline" style="position: absolute; opacity: 0;" checked="checked"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> Belum Lunas
+						
+						
+                        <label class="checkbox-inline icheck">
+							<div class="icheckbox_minimal-blue checked" style="position: relative;"><input type="checkbox" name="pembayaran"id="pembayaran" value="2" style="position: absolute; opacity: 0;"@checked($jurnal->pembayaran==2)><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> Lunas
 						</label>
-						<label class="radio-inline icheck">
-							<div class="iradio_minimal-blue" style="position: relative;"><input type="radio" name ="pembayaran" id="inlineradio2" value="2" name="optionsRadiosInline" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> Lunas
-						</label>
-					
 					</div>
+                    
 				</div>
                 <div class="form-group">
                     <label class="col-md-3 control-label">Kehadiran</label>
                     <div class="col-md-6">
                         <select  class="form-control" name="kehadiran" id="kehadiran" >
                                 <option value="0">Pilih Kehadiran</option>
-                                <option value="1">Offline</option>
-                                <option value="2">Online</option>
+                                <option value="1"@selected($jurnal->kehadiran==1)>Offline</option>
+                                <option value="2"@selected($jurnal->kehadiran==2)>Online</option>
                         </select>
                     </div>
                 </div>
                 <div class="form-group">
 					<label class="col-md-3 control-label">Catatan</label>
 					<div class="col-md-6">
-						<textarea class="form-control autosize" name="catatan" disabled style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 237px;" ">{{ $jurnal->catatan }}</textarea>
+						<textarea class="form-control autosize" name="catatan"  style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 237px;" ">{{ $jurnal->catatan }}</textarea>
 					</div>
 					<div class="col-sm-2"><p class="help-block">Tulis Catatan</p></div>
 				</div>
                 <div class="panel-footer">
                     <div class="row">
+                        @if ($jurnal->pembayaran==1)
                         <div class="col-sm-8 col-sm-offset-2">
                             <button name="simpan" type="submit" id="btn-submit"class="btn btn-indigo">Submit</button>
                         </div>
+                        @endif
                     </div>
                 </div>
             </form>
@@ -186,6 +188,8 @@
 @push('notif')
   <script> 
     let kehadiran =document.getElementById('kehadiran');
+    let pembayaran =document.getElementById('kehadiran');
+    console.log(pembayaran.value);
     $("#btn-submit").click(function(e) {
     var form = $(this).closest("form");
     var name = $(this).data("name");
@@ -197,9 +201,30 @@
         icon: 'warning'
     });
     }
+    
     else{
-     form.submit();
-    }
+       if(pembayaran.value==1){
+        $("#btn-submit").attr("disabled",true);
+        form.submit();
+       }
+       else{
+            swal({
+        title: 'Apakah anda Yakin ingin Melunaskan Pembayaran?',
+        text: 'Data yang telah Lunas tidak dapat diubah maupun dihapus',
+        icon: 'warning',
+        buttons: true,
+        dangerMode: true,
+        })
+        .then((willValid) => {
+        if (willValid) {
+            $("#btn-submit").attr("disabled",true);
+            form.submit();
+        } else {
+            swal('Proses Validasi dibatalkan');
+        }
+        });
+        }
+     }
     
   });
   </script>  

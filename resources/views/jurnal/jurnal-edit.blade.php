@@ -120,50 +120,25 @@
                     <div class="col-md-6">
                         <select  class="form-control" name="kode_seminar" id="seminar" >
                                 <option value="0">Pilih Jenis Seminar</option>
-                                @forelse ($seminar as $s)
-                                <option value="{{$s->kode_seminar}}">{{ $s->jenis_seminar }}</option>
-                                @empty         
+                                @forelse($seminar as $s)
+                                 <option value="{{$s->kode_seminar}}" @selected($s->kode_seminar == $jurnal->kode_seminar)>{{ $s->jenis_seminar }}</option>
+                                 @empty
                                 <option value="">Kosong</option>
                                 @endforelse
+                                
                         </select>
                     </div>
                 </div>
                 <input type="hidden" value="{{$jurnal->status}}">
                 <input type="hidden" value="{{$jurnal->pembayaran}}">
-                {{-- <div class="form-group">
-                    <label class="col-md-3 control-label">Status</label>
-                    <div class="col-md-6">
-                        <select  class="form-control" name="status" id="status" >
-                                <option value="0">Pilih Status</option>
-                                <option value="1">Submission</option>
-                                <option value="2">Review</option>
-                                <option value="3">Menunggu Revisi</option>
-                                <option value="4">Accepted</option>
-                                <option value="5">CopyEditing</option>
-                                <option value="6">Production</option>
-                                <option value="7">Publish</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-					<label class="col-md-3 control-label">Pembayaran</label>
-					<div class="col-md-6">
-						<label class="radio-inline icheck">
-							<div class="iradio_minimal-blue" style="position: relative;"><input type="radio" name ="pembayaran" id="inlineradio1" value="0" name="optionsRadiosInline" style="position: absolute; opacity: 0;" checked="checked"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> Belum Lunas
-						</label>
-						<label class="radio-inline icheck">
-							<div class="iradio_minimal-blue" style="position: relative;"><input type="radio" name ="pembayaran" id="inlineradio2" value="1" name="optionsRadiosInline" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> Lunas
-						</label>
-					
-					</div>
-				</div> --}}
+               
                 <div class="form-group">
                     <label class="col-md-3 control-label">Kehadiran</label>
                     <div class="col-md-6">
                         <select  class="form-control" name="kehadiran" id="kehadiran" >
                                 <option value="0">Pilih Kehadiran</option>
-                                <option value="1">Offline</option>
-                                <option value="2">Online</option>
+                                <option value="1"@selected($jurnal->kehadiran==1)>Offline</option>
+                                <option value="2"@selected($jurnal->kehadiran==2)>Online</option>
                         </select>
                     </div>
                 </div>
