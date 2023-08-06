@@ -16,10 +16,10 @@
                     <div class="col-md-6">
                         <input type="text" name="submission"class="form-control"required autofocus value="{{ old('submission') }}">
                     </div>
-                @error('kode_seminar')
+                @error('submission')
                 <div class="col-md-3">
                     <p class="help-block"><i class="fa fa-times-circle"></i>
-                        Submission tidak boleh sama dengan kode yang sudah ada</p>
+                        Submission tidak boleh sama dengan kode yang sudah ada atau Submission tidak lebih dari 4 digit</p>
                 </div>
                 @enderror
                 </div>
@@ -120,7 +120,7 @@
                         <select  class="form-control" name="kode_seminar" id="seminar" >
                                 <option value="0">Pilih Jenis Seminar</option>
                                 @forelse ($seminar as $s)
-                                <option value="{{$s->kode_seminar}}">{{ $s->jenis_seminar }}</option>
+                                <option value="{{$s->kode_seminar }}"@if(old('kode_seminar') == $s->kode_seminar)selected @endif>{{ $s->jenis_seminar }}</option>
                                 @empty         
                                 <option value="">Kosong</option>
                                 @endforelse
@@ -159,8 +159,12 @@
                     <div class="col-md-6">
                         <select  class="form-control" name="kehadiran" id="kehadiran" >
                                 <option value="0">Pilih Kehadiran</option>
-                                <option value="1">Offline</option>
-                                <option value="2">Online</option>
+                                <option value="1"@if (old('kehadiran')==1)
+                                    selected
+                                @endif>Offline</option>
+                                <option value="2"@if (old('kehadiran')==2)
+                                selected
+                                @endif>Online</option>
                         </select>
                     </div>
                 </div>

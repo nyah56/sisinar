@@ -2,7 +2,7 @@
 @section('isi')
 <div class="panel panel-indigo">
     <div class="panel-heading">
-        <h2>Edit Kesekretariatan</h2>
+        <h2>Edit Koordinator</h2>
     </div>
         <div class="panel-body">
             
@@ -122,7 +122,7 @@
                         <select  class="form-control" name="kode_seminar" id="seminar" disabled>
                                 <option value="0">Pilih Jenis Seminar</option>
                                 @forelse ($seminar as $s)
-                                <option value="{{$s->kode_seminar}}">{{ $s->jenis_seminar }}</option>
+                                <option value="{{$s->kode_seminar}}"@selected($s->kode_seminar==$jurnal->kode_seminar)>{{ $s->jenis_seminar }}</option>
                                 @empty         
                                 <option value="">Kosong</option>
                                 @endforelse
@@ -170,7 +170,7 @@
                 <div class="form-group">
 					<label class="col-md-3 control-label">Catatan</label>
 					<div class="col-md-6">
-						<textarea class="form-control autosize" name="catatan" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 237px;" ">{{ $jurnal->catatan }}</textarea>
+						<textarea class="form-control autosize" name="catatan" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 237px; overflow-y: auto;"  >{{ $jurnal->catatan }}</textarea>
 					</div>
 					<div class="col-sm-2"><p class="help-block">Tulis Catatan</p></div>
 				</div>
