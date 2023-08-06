@@ -10,3 +10,7 @@ a {
 a .logged-id{
     color: red; !important
 }
+.center-img {
+    display: block; /* This ensures the image will take full width */
+    margin: 0 auto; /* This centers the image horizontally */
+  }
