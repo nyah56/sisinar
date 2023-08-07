@@ -4,6 +4,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\JurnalController;
 use App\Http\Controllers\KesekretariatanController;
 use App\Http\Controllers\KoordinatorController;
+use App\Http\Controllers\KoordinatorSementaraController;
+use App\Http\Controllers\koortokController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterAdminController;
 use App\Http\Controllers\ReviewerController;
@@ -69,3 +71,9 @@ Route::middleware(['auth','role:Kesekertariatan'])->group(function(){
 Route::get('/koordinator', [KoordinatorController::class, 'index']);
 Route::get('/koordinator/edit/{id}', [KoordinatorController::class, 'edit']);
 Route::put('/koordinator/update/{id}', [KoordinatorController::class, 'update']);
+
+Route::get('/koordinator/edit/sementara/{id}', [KoordinatorSementaraController::class, 'edit']);
+Route::put('/koordinator/update/sementara/{id}', [KoordinatorSementaraController::class, 'update']);
+Route::put('/koordinatir/update/rev1/sementara/{id}',[KoordinatorSementaraController::class, 'updateRev1']);
+Route::put('/koordinatir/update/rev2/sementara/{id}',[KoordinatorSementaraController::class, 'updateRev2']);
+
