@@ -156,7 +156,7 @@
                            
                     <label class="col-md-3 control-label">Reviewer 1</label>
                     <div class="col-md-6">
-                        <select  class="form-control" name="reviewer1" id="kehadiran" >
+                        <select  class="form-control" name="reviewer1" id="reviewer1" >
                             @if($detail1->isEmpty())
                                 <option value="0">Pilih Reviewer</option>
                                 @foreach ($reviewer as $r)
@@ -179,7 +179,7 @@
                        
                         <label class="col-md-3 control-label">Reviewer 2</label>
                         <div class="col-md-6">
-                            <select  class="form-control" name="reviewer2" id="kehadiran" >
+                            <select  class="form-control" name="reviewer2">
                                 @if($detail2->isEmpty())
                                     <option value="0">Pilih Reviewer</option>
                                     @foreach ($reviewer as $r)
@@ -213,80 +213,19 @@
             </form>
     </div>
 </div>
-@push('add')
-    <script>
-        const btnAdd= document.getElementById('btn-add');
-        const newInput= document.getElementById('add');
-        const iconElement = btnAdd.querySelector('.ti');
-        let state=true;
-        const fetchReviewer=async()=>{
-            try {
-            const response = await fetch(`/reviewer/fetch`);
-                const data = await response.json();
-                return data;
-                // console.log(data);
-            } 
-            catch (error) {
-                return {}; // Return an empty object if there's an error
-        }
-        }
-        btnAdd.addEventListener("click", async function(){
-        state =!state;
-        let optionsData=await fetchReviewer();
-        // console.log(state);
-         if (!state){
-            iconElement.classList.remove('ti-plus');
-            iconElement.classList.add('ti-minus')
-            // options.array.forEach(option => {
-            //     const optionElement = document.createElement('option');
-            //     optionElement.value=option.id_reviewer;
-            //     optionElement.textContent=option.nama_reviewer;
-                
-            // });
-                const selectElement = document.createElement('select');
-                selectElement.classList.add('form-control');
-                selectElement.name = 'reviewer[1]';
-                
 
-                const defaultOption = document.createElement('option');
-                defaultOption.value = '0';
-                defaultOption.textContent = 'Pilih Reviewer';
-                selectElement.appendChild(defaultOption);
-
-                optionsData.forEach(option => {
-                const optionElement = document.createElement('option');
-                optionElement.value = option.id_reviewer;
-                optionElement.textContent = option.nama;
-                selectElement.appendChild(optionElement);
-                });
-
-                // Add the select element with options to the newInput div
-                newInput.innerHTML = `<div class="form-group">
-                        <label class="col-md-3 control-label">Reviewer 2</label>
-                        <div class="col-md-6">
-                            ${selectElement.outerHTML}
-                        </div>
-                    </div>`;
-         }
-         else{
-            iconElement.classList.remove('ti-minus');
-            iconElement.classList.add('ti-plus')
-            newInput.innerHTML='';
-         }
-        })
-    </script>
-@endpush
 @push('notif')
   <script> 
-    let kehadiran =document.getElementById('kehadiran');
+    // const kehadiran =document.getElementById('kehadiran');
+    const reviewer1 =document.getElementById('reviewer1');
     $("#btn-submit").click(function(e) {
     var form = $(this).closest("form");
     var name = $(this).data("name");
     e.preventDefault();
     // console.log(seminar.value);
-    if(kehadiran.value==0){
+    if(reviewer1.value==0){
     swal({
-        title: "Harap Mengisi Kehadiran",
+        title: "Reviewer 1 Harus diisi",
         icon: 'warning'
     });
     }

@@ -110,9 +110,10 @@
 													<li><a href="/jurnal">Tabel Jurnal</a></li>
 													<li><a href="/seminar">Tabel Jenis Seminar</a></li>
 													<li><a href="/reviewer">Tabel Reviewer</a></li>
+													<li><a href="/register/admin">Tambah User</a></li>
 												</ul>
 											</li>
-											<li><a href="javascript:;"><i class="ti ti-receipt"></i><span>Kesekretariatan</span></a>
+											<li><a href="javascript:;"><i class="ti ti-money"></i><span>Kesekretariatan</span></a>
 												<ul class="acc-menu">
 													<li><a href="/kesekretariatan">Kesekretariatan</a></li>
 												</ul>
@@ -123,7 +124,7 @@
 												</ul>
 											</li>
 										@elseif($user->role == "Kesekretariat")
-										<li><a href="javascript:;"><i class="ti ti-receipt"></i><span>Kesekretariatan</span></a>
+										<li><a href="javascript:;"><i class="ti ti-money"></i><span>Kesekretariatan</span></a>
 											<ul class="acc-menu">
 												<li><a href="/kesekretariatan">Kesekretariatan</a></li>
 											</ul>
@@ -138,7 +139,7 @@
 									@endif
 									
 									
-								
+
 
 								</ul>
 							</nav>
@@ -215,12 +216,9 @@
 				<footer role="contentinfo">
 					<div class="clearfix">
 						<ul class="list-unstyled list-inline pull-left">
-							<li>
-								<h6 style="margin: 0;">&copy; 2023 MINU</h6>
-							</li>
+							<li><h6 style="margin: 0;">© 2023 MINU</h6></li>
 						</ul>
-						<button class="pull-right btn btn-link btn-xs hidden-print" id="back-to-top"><i
-								class="ti ti-arrow-up"></i></button>
+						<button class="pull-right btn btn-link btn-xs hidden-print" id="back-to-top"><i class="ti ti-arrow-up"></i></button>
 					</div>
 				</footer>
 

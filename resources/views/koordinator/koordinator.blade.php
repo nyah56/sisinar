@@ -22,8 +22,8 @@
                             <th class="text-center" width="10%">Nama</th>
                             <th class="text-center" width="5%">Jenis Seminar</th>
                             <th class="text-center" width="5%">Status</th>
-                            <th class="text-center" width="5%">Reviewer 1</th>
-                            <th class="text-center" width="5%">Reviewer 2</th>
+                            <th class="text-center" width="10%">Reviewer 1</th>
+                            <th class="text-center" width="10%">Reviewer 2</th>
                             <th class="text-center" width="15%">Action</th>
                         </tr>
                     </thead>
@@ -51,8 +51,8 @@
                         <td><span class="label label-success">Publish</span></td>   
                         @endif
                         
-                       <td>R1</td>
-                       <td>R2</td>
+                       <td>{{ namaReviewer1($jur->submission) }}</td>
+                       <td>{{ namaReviewer2($jur->submission) }}</td>
                         <td> 
                             <div class="btn-group">
                               <button type="button" data-toggle = "modal" data-target="#detailData" class="btn btn-primary btn-detail openModalButton" data-id="{{ $jur->submission }}"><i class="ti ti-eye"></i></button>
