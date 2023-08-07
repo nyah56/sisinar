@@ -37,6 +37,7 @@ class KesekretariatanController extends Controller
             'pembayaran' => $request->pembayaran,
             'kehadiran' => $request->kehadiran,
             'status' => $request->status,
+            'catatan' => $request->catatan,
         ]);
         return redirect('/kesekretariatan');
 

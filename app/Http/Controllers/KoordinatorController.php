@@ -25,93 +25,71 @@ class KoordinatorController extends Controller
         $jurnal = Jurnal::find($id);
         $seminar = Seminar::all();
         $reviewer = Reviewer::all();
-        $cekDetailJunal = DetailJurnal::where('submission', $id)->exists();
+        $detail1 = DetailJurnal::where('submission', $id)->where('status', 0)->get();
+        // dd($detail1);
+        $detail2 = DetailJurnal::where('submission', $id)->where('status', 1)->get();
         // dd($cekDetailJunal);
-        return view('koordinator.koordinator-edit', ['jurnal' => $jurnal, 'seminar' => $seminar, 'reviewer' => $reviewer, 'DetailJurnal' => $cekDetailJunal]);
+        return view('koordinator.koordinator-edit', [
+            'jurnal' => $jurnal,
+            'seminar' => $seminar,
+            'reviewer' => $reviewer,
+            'detail1' => $detail1,
+            'detail2' => $detail2,
+        ]);
     }
 
     public function update(Request $request, string $id)
     {
 
-        //  $cekDetail = DetailJurnal::where('submission', '=', $id)->get()->first();
-        //  $cekReviewer = DetailJurnal::where('id_reviewer', '=', $request->reviewer)->get();
-        //  if(is_null($cekDetail) || !$cekReviewer){
-        //     DetailJurnal::create([
-        //                     'submission' => $id,
-        //                     'id_reviewer' => $request->reviewer,
-        //                     'status' => $request->reviewerhidden
-        //                 ]);
-        //  }else{
-        //     DetailJurnal::where('submission',$id)->where('status',$request->reviewerhidden)->update(['id_reviewer' => $request->reviewer]);
-        //  }
+        function reviewer1(String $submission, String $request)
+        {
 
-        //
-        $status = 0;
-        $cekDetail = DetailJurnal::where('submission', '=', $id)->get()->first();
-        foreach ($request->input('reviewer') as $k) {
-
-            // $cekReviewer = DetailJurnal::where('id_reviewer', '=', $k)->exists();
-            // $cekdoang = DetailJurnal::where('submission', $id)->where('id_reviewer',$request->reviewer[0])->get();
-            // dd($cekdoang);
-            // if (is_null($cekDetail) || !$cekReviewer) { // create data
-            $tes = DetailJurnal::where('id_reviewer', '=', $k)->where('status', '=', $status)->exists();
-
-            if (is_null($cekDetail)) { // create data
+            $cekDetail = DetailJurnal::where('submission', '=', $submission)->get()->first();
+            if (is_null($cekDetail)) {
                 DetailJurnal::create([
-                    'submission' => $id,
-                    'id_reviewer' => $k,
-                    'status' => $status,
+                    'submission' => $submission,
+                    'id_reviewer' => $request,
+                    'status' => 0,
                 ]);
-
             } else {
-                if (!$tes) {
-                    DetailJurnal::where('submission', $id)->where('status', $status)->update(['id_reviewer' => $k]);
-                } else {
-                    DetailJurnal::create([
-                        'submission' => $id,
-                        'id_reviewer' => $k,
-                        'status' => $status,
-                    ]);
-                }
+                DetailJurnal::where('submission', $submission)->where('status', 0)->update(['id_reviewer' => $request]);
             }
-            // else if (!is_null($cekDetail) && !$tes) {
-            //     DetailJurnal::create([
-            //         'submission' => $id,
-            //         'id_reviewer' => $k,
-            //         'status' => $status,
-            //     ]);
-            // } else if (!$tes) {
-            //     // update data
-            //     DetailJurnal::where('submission', $id)->where('status', $status)->update(['id_reviewer' => $k]);
-            // }
-
-            $status++;
         }
-        // gawe detailjurnal
-        // $status=1;
-        // foreach($request->input('reviewer')as $k){
-        //     dump($k,$status);
-        //     $status++;
-        // }
-        // foreacgh
-        //  if
-        // else
-        // if $request->reviewer[1] == 0
 
-        // $status = 0;
-        // // // Wrap the operations in a database transaction
-        // foreach($request->input('reviewer')as $k){
+        function reviewer2(String $submission, String $request)
+        {
+            $cekReviewer = DetailJurnal::where('submission', '=', $submission)->where('status', '=', 1)->exists();
 
-        //     $post = DetailJurnal::updateOrCreate([
-        //         'submission' => $id,
-        //         'status' => $status,
-        //     ],
-        //     [ 'id_reviewer' =>$request->reviewer[$status],
-        //     'id_reviewer' =>$request->reviewer[$status]
+            if (!$cekReviewer) {
+                DetailJurnal::create([
+                    'submission' => $submission,
+                    'id_reviewer' => $request,
+                    'status' => 1,
+                ]);
+            } else {
+                DetailJurnal::where('submission', $submission)->where('status', 1)->update(['id_reviewer' => $request]);
+            }
+        }
+        // reviewer1($id, $request->reviewer1);
+        // reviewer2($id, $request->reviewer2);
+        $jurnal = Jurnal::find($id);
+        $this->validate($request, [
 
-        //     ]);
-        //     $status++;
-        // }
+            'status' => 'required',
+        ]);
+        $jurnal->update([
+
+            'status' => $request->status,
+            'catatan' => $request->catatan,
+        ]);
+        if ($request->reviewer2 == 0) {
+            reviewer1($id, $request->reviewer1);
+
+        } else {
+            reviewer1($id, $request->reviewer1);
+            reviewer2($id, $request->reviewer2);
+        }
+
         return redirect('/koordinator');
     }
 }

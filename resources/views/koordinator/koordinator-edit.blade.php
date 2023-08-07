@@ -153,18 +153,47 @@
 					</div>
 				</div>
                 <div class="form-group">
+                           
                     <label class="col-md-3 control-label">Reviewer 1</label>
                     <div class="col-md-6">
-                        <select  class="form-control" name="reviewer[0]" id="kehadiran" >
+                        <select  class="form-control" name="reviewer1" id="kehadiran" >
+                            @if($detail1->isEmpty())
                                 <option value="0">Pilih Reviewer</option>
                                 @foreach ($reviewer as $r)
                                 <option value="{{ $r->id_reviewer }}">{{ $r->nama }}</option>
                                 @endforeach
+                            @else
+                                <option value="0">Pilih Reviewer</option>
+                                @foreach ($reviewer as $r)
+                                <option value="{{ $r->id_reviewer }}"  @selected($r->id_reviewer == $detail1[0]->id_reviewer)>{{ $r->nama }}</option>
+                                @endforeach
+                            @endif
+                            
                         </select>
+                        
                     </div>
-                    <button type="button" class="btn btn-primary"id="btn-add"> <i class="ti ti-plus"></i></button>
+                    <br>
+                   
                 </div>
-              <div id="add">
+                <div class="form-group">
+                       
+                        <label class="col-md-3 control-label">Reviewer 2</label>
+                        <div class="col-md-6">
+                            <select  class="form-control" name="reviewer2" id="kehadiran" >
+                                @if($detail2->isEmpty())
+                                    <option value="0">Pilih Reviewer</option>
+                                    @foreach ($reviewer as $r)
+                                    <option value="{{ $r->id_reviewer }}">{{ $r->nama }}</option>
+                                    @endforeach
+                                @else
+                                    <option value="0">Pilih Reviewer</option>
+                                    @foreach ($reviewer as $r)
+                                    <option value="{{ $r->id_reviewer }}" @selected($r->id_reviewer == $detail2[0]->id_reviewer) >{{ $r->nama }}</option>
+                                    @endforeach
+                                @endif
+                            </select>
+                        </div>
+                
                 
               </div>
                 <div class="form-group">

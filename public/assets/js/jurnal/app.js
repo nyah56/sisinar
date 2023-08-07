@@ -208,7 +208,7 @@ document.querySelectorAll(".openModalButton").forEach((button) => {
                                           <div class="form-group">
                                               <label class="col-md-3 control-label">Catatan</label>
                                               <div class="col-md-8">
-                                                  <textarea class="form-control autosize" name="catatan" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 250px;" disabled>${data.catatan}</textarea>
+                                                  <textarea class="form-control autosize" name="catatan" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 250px; overflow-y: auto;" disabled>${data.catatan}</textarea>
                                               </div>
                                             
                                           </div>
