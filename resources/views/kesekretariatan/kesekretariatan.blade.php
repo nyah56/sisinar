@@ -72,8 +72,6 @@
                             <td>Data Kosong</td>
                           </tr>
                       @endforelse 
-                        
-                       
                     </tbody>
                 </table>
              

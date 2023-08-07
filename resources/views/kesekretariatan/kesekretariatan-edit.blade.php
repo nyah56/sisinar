@@ -200,7 +200,7 @@
     var form = $(this).closest("form");
     var name = $(this).data("name");
     e.preventDefault();
-    console.log(pembayaran.value);
+    // console.log(pembayaran.value);
     if(kehadiran.value==0){
         swal({
             title: "Harap Mengisi Kehadiran",
