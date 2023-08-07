@@ -172,11 +172,10 @@
                         </select>
                         
                     </div>
-                    <br>
                    
                 </div>
-                <div class="form-group">
-                       
+
+                <div class="form-group">      
                         <label class="col-md-3 control-label">Reviewer 2</label>
                         <div class="col-md-6">
                             <select  class="form-control" name="reviewer2">
@@ -192,9 +191,7 @@
                                     @endforeach
                                 @endif
                             </select>
-                        </div>
-                
-                
+                        </div> 
               </div>
                 <div class="form-group">
 					<label class="col-md-3 control-label">Catatan</label>
