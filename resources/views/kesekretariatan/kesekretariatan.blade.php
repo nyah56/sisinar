@@ -60,7 +60,7 @@
                         <td> 
                             <div class="btn-group">
                               <button type="button" data-toggle = "modal" data-target="#detailData" class="btn btn-primary btn-detail openModalButton" data-id="{{ $jur->submission }}"><i class="ti ti-eye"></i></button>
-                            @if ($jur -> pembayaran == 1)    
+                              @if (auth()->user()->role == "Admin" || $jur->pembayaran==1)    
                             <a type="button" class="btn btn-orange" href="/kesekretariatan/edit/{{ $jur ->submission }}"><i class="ti ti-pencil-alt"></i></a>
                            
                             @endif

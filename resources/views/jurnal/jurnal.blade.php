@@ -3,7 +3,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="alert alert-info">
-            Tambah atau Ubah Data Jurnal Disini kolom belum lengkap perlu konsul
+            Tambah atau Ubah Data Jurnal Disini 
             <button type="button" class="close" data-dismiss="alert">&times;</button>
         </div>
         <div class="panel panel-indigo" id="panel-editable">

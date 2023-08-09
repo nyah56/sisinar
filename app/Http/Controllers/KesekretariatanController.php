@@ -26,17 +26,16 @@ class KesekretariatanController extends Controller
     }
     public function update(Request $request, string $id)
     {
-
+        // dd($request->all());
         $jurnal = Jurnal::find($id);
         $this->validate($request, [
             'pembayaran' => 'required',
             'kehadiran' => 'required',
-            'status' => 'required',
+
         ]);
         $jurnal->update([
             'pembayaran' => $request->pembayaran,
             'kehadiran' => $request->kehadiran,
-            'status' => $request->status,
             'catatan' => $request->catatan,
         ]);
         return redirect('/kesekretariatan');

@@ -3,7 +3,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="alert alert-info">
-            Penyelesaian Administrasi Seminar
+            Ubah Kehadiran dan Set Reviewer disini
             <button type="button" class="close" data-dismiss="alert">&times;</button>
         </div>
         <div class="panel panel-indigo" id="panel-editable">

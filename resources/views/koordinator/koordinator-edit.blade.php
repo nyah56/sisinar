@@ -106,7 +106,7 @@
                 @enderror">
                     <label class="col-md-3 control-label">No Whatsapp</label>
                     <div class="col-md-6">
-                        <input type="text" name="wa"class="form-control" value="62{{ $jurnal->no_wa }}" disabled>
+                        <input type="text" name="wa"class="form-control" value="{{ $jurnal->no_wa }}" disabled>
                     </div>
                     <div class="col-sm-3"><p class="help-block">6281234567890</p></div>
                     @error('wa')
@@ -144,14 +144,7 @@
                     </select>
                     </div>
                 </div>
-                <div class="form-group">
-					<label class="col-md-3 control-label">Pembayaran</label>
-					<div class="col-md-6">					
-                        <label class="checkbox-inline icheck">
-							<div class="icheckbox_minimal-blue checked" style="position: relative;"><input type="checkbox" name="pembayaran"id="pembayaran" value="2" style="position: absolute; opacity: 0;"@checked($jurnal->pembayaran==2) @disabled(true)><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> Lunas
-						</label>
-					</div>
-				</div>
+               
                 <div class="form-group">
                            
                     <label class="col-md-3 control-label">Reviewer 1</label>

@@ -106,7 +106,7 @@
                 @enderror">
                     <label class="col-md-3 control-label">No Whatsapp</label>
                     <div class="col-md-6">
-                        <input type="text" name="wa"class="form-control" value="62{{ $jurnal->no_wa }}" disabled>
+                        <input type="text" name="wa"class="form-control" value="{{ $jurnal->no_wa }}" disabled>
                     </div>
                     <div class="col-sm-3"><p class="help-block">6281234567890</p></div>
                     @error('wa')
@@ -132,7 +132,7 @@
                 <div class="form-group">
                     <label class="col-md-3 control-label">Status</label>
                     <div class="col-md-6">
-                        <select  class="form-control" name="status" id="status" >
+                        <select  class="form-control" name="status" id="status" disabled>
                                 <option value="0">Pilih Status</option>
                                 <option value="1"@selected($jurnal->status == 1)>Submission</option>
                                 <option value="2"@selected($jurnal->status == 2)>Review</option>
@@ -145,16 +145,22 @@
                     </div>
                 </div>
                 <input name = "pembayaran"type="hidden" value="{{$jurnal->pembayaran}}">
+                
                 <div class="form-group">
 					<label class="col-md-3 control-label">Pembayaran</label>
-					<div class="col-md-6">
-						
-						
-                        <label class="checkbox-inline icheck">
-							<div class="icheckbox_minimal-blue checked" style="position: relative;"><input type="checkbox" name="pembayaran" id="pembayaran" value="2" style="position: absolute; opacity: 0;"@checked($jurnal->pembayaran==2)><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> Lunas
+					<div class="col-sm-8">
+
+						<label class="radio icheck">
+							<div class="iradio_minimal-blue checked" style="position: relative;"><input type="radio" name="pembayaran" id="optionsRadios1" value="1"  style="position: absolute; opacity: 0;"@checked($jurnal->pembayaran==1)><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
+							 Belum Lunas
 						</label>
+
+						<label class="radio icheck">
+							<div class="iradio_minimal-blue" style="position: relative;"><input type="radio" name="pembayaran" id="lunas" value="2" style="position: absolute; opacity: 0;"@checked($jurnal->pembayaran==2)><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
+							Lunas
+						</label>
+
 					</div>
-                    
 				</div>
                 <div class="form-group">
                     <label class="col-md-3 control-label">Kehadiran</label>
@@ -176,7 +182,7 @@
 				</div>
                 <div class="panel-footer">
                     <div class="row">
-                        @if ($jurnal->pembayaran==1)
+                        @if (auth()->user()->role == "Admin" || $jurnal->pembayaran==1)
                         <div class="col-sm-8 col-sm-offset-2">
                             <button name="simpan" type="submit" id="btn-submit"class="btn btn-indigo">Submit</button>
                         </div>
@@ -193,14 +199,15 @@
     
 
     let kehadiran =document.getElementById('kehadiran');
-    // let pembayaran =document.getElementById('pembayaran');
-    // console.log(pembayaran.value);
-    
+  
+    const pembayaran = document.querySelector("#lunas");
+    // console.log(pembayaran.checked);
+
     $("#btn-submit").click(function(e) {
     var form = $(this).closest("form");
     var name = $(this).data("name");
     e.preventDefault();
-    // console.log(pembayaran.value);
+    
     if(kehadiran.value==0){
         swal({
             title: "Harap Mengisi Kehadiran",
@@ -208,10 +215,11 @@
         });
     }
     
-    else{
+    else if(pembayaran.checked){
+        
         swal({
         title: 'Apakah anda yakin melunaskan Pembayaran ?',
-        text: 'Cek Lagi Pembayaran,Apabila Pembayaran yang akan di submit dicentang "Lunas".Ketika di submit,data tidak dapat diubah maupun dihapus',
+        text: 'Pembayaran yang sudah Lunas datanya tidak dapat diubah maupun dihapus',
         icon: 'warning',
         buttons: true,
         dangerMode: true,
@@ -225,8 +233,12 @@
         }
         });
      }
-    
+     else if(!pembayaran.checked){
+     $("#btn-submit").attr("disabled",true);
+     form.submit();
+  } 
   });
+ 
   </script>  
 @endpush
 

@@ -100,11 +100,10 @@
 								<ul class="acc-menu">
 									<li class="nav-separator"><span>Explore</span></li>
 									<li><a href="/"><i class="ti ti-home"></i><span>Dashboard</span></a></li>
-									@if (auth()->check())	
-									@php
-										$user = auth()->user();
-									@endphp
-										@if ($user->role == "Admin")
+									
+									@auth 
+									
+										@if ( auth()->user()->role == "Admin")
 											<li><a href="javascript:;"><i class="ti ti-settings"></i><span>Admin</span></a>
 												<ul class="acc-menu">
 													<li><a href="/jurnal">Tabel Jurnal</a></li>
@@ -123,22 +122,20 @@
 													<li><a href="/koordinator">Koordinator</a></li>
 												</ul>
 											</li>
-										@elseif($user->role == "Kesekretariat")
+										@elseif( auth()->user()->role == "Kesekretariat")
 										<li><a href="javascript:;"><i class="ti ti-money"></i><span>Kesekretariatan</span></a>
 											<ul class="acc-menu">
 												<li><a href="/kesekretariatan">Kesekretariatan</a></li>
 											</ul>
 										</li>
-										@elseif($user->role == "Koordinator")
+										@elseif( auth()->user()->role == "Koordinator")
 										<li><a href="javascript:;"><i class="ti ti-receipt"></i><span>Koordinator</span></a>
 											<ul class="acc-menu">
 												<li><a href="/koordinator">Koordinator</a></li>
 											</ul>
 										</li>
 										@endif
-									@endif
-									
-									
+									@endauth
 
 
 								</ul>
