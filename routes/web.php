@@ -61,6 +61,7 @@ Route::middleware(['auth', 'role:Admin,Koordinator'])->group(function () {
     Route::get('/koordinator', [KoordinatorController::class, 'index']);
     Route::get('/koordinator/edit/{id}', [KoordinatorController::class, 'edit']);
     Route::put('/koordinator/update/{id}', [KoordinatorController::class, 'update']);
+    Route::get('/koordinator/delete/{id}', [KoordinatorController::class, 'delete']);
 });
 //API
 Route::middleware(['auth', 'role:Admin,Kesekretariat,Koordinator'])->group(function () {

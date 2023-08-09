@@ -37,7 +37,10 @@
 	<link type="text/css" href="{{ asset('assets/plugins/jvectormap/jquery-jvectormap-2.0.2.css') }}" rel="stylesheet">
 	<!-- jVectorMap -->
 	<link type="text/css" href="{{ asset('assets/plugins/switchery/switchery.css') }}" rel="stylesheet"> <!-- Switchery -->
-
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  
 </head>
 
 <body class="animated-content sidebar-collapsed">
@@ -231,8 +234,8 @@
 
 	{{-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> --}}
 {{-- <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script> --}}
-
-	<script type="text/javascript" src="{{ asset('assets/js/jquery-1.10.2.min.js') }}"></script> <!-- Load jQuery -->
+	
+	{{-- <script type="text/javascript" src="{{ asset('assets/js/jquery-1.10.2.min.js') }}"></script> <!-- Load jQuery --> --}}
 	<script type="text/javascript" src="{{ asset('assets/js/jqueryui-1.10.3.min.js') }}"></script> <!-- Load jQueryUI -->
 	<script type="text/javascript" src="{{ asset('assets/js/bootstrap.min.js') }}"></script> <!-- Load Bootstrap -->
 	<script type="text/javascript" src="{{ asset('assets/js/enquire.min.js') }}"></script> <!-- Load Enquire -->

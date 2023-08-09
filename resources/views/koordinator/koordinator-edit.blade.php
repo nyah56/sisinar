@@ -149,14 +149,14 @@
                            
                     <label class="col-md-3 control-label">Reviewer 1</label>
                     <div class="col-md-6">
-                        <select  class="form-control" name="reviewer1" id="reviewer1" >
+                        <select  class="form-control select-reviewer js-states" name="reviewer1" id="reviewer1" >
                             @if($detail1->isEmpty())
-                                <option value="0">Pilih Reviewer</option>
+                                <option></option>
                                 @foreach ($reviewer as $r)
                                 <option value="{{ $r->id_reviewer }}">{{ $r->nama }}</option>
                                 @endforeach
                             @else
-                                <option value="0">Pilih Reviewer</option>
+                                <option></option>
                                 @foreach ($reviewer as $r)
                                 <option value="{{ $r->id_reviewer }}"  @selected($r->id_reviewer == $detail1[0]->id_reviewer)>{{ $r->nama }}</option>
                                 @endforeach
@@ -171,20 +171,23 @@
                 <div class="form-group">      
                         <label class="col-md-3 control-label">Reviewer 2</label>
                         <div class="col-md-6">
-                            <select  class="form-control" name="reviewer2">
+                            <select  class="form-control select-reviewer" name="reviewer2">
                                 @if($detail2->isEmpty())
-                                    <option value="0">Pilih Reviewer</option>
+                                    <option></option>
                                     @foreach ($reviewer as $r)
                                     <option value="{{ $r->id_reviewer }}">{{ $r->nama }}</option>
                                     @endforeach
                                 @else
-                                    <option value="0">Pilih Reviewer</option>
+                                    <option></option>
                                     @foreach ($reviewer as $r)
                                     <option value="{{ $r->id_reviewer }}" @selected($r->id_reviewer == $detail2[0]->id_reviewer) >{{ $r->nama }}</option>
                                     @endforeach
                                 @endif
                             </select>
                         </div> 
+                        @if (!$detail2->isEmpty())
+                        <a type="button" class="btn btn-danger del-rev2" data-deleteId="{{ $jurnal->submission }}"><i class="ti ti-trash"></i></a>
+                        @endif
               </div>
                 <div class="form-group">
 					<label class="col-md-3 control-label">Catatan</label>
@@ -206,6 +209,37 @@
 
 @push('notif')
   <script> 
+    $(document).ready(function() {
+        $(".select-reviewer").select2({
+            placeholder: "Pilih Reviewer",
+            allowClear: false
+
+            });
+    });
+    $(".del-rev2").click(function(e) {
+      var id=$(this).attr('data-deleteid');
+   
+      e.preventDefault();
+      swal({
+        title: 'Yakin ingin hapus Reviewer 2?',
+        text: "Reviewer 2 akan Dihapus",
+        icon: 'warning',
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          window.location="/koordinator/delete/"+id+""
+          swal("Data anda berhasil dihapus", {
+            icon: "success",
+            });
+          // form.submit();
+          // console.log(id);
+        } else {
+          swal('Proses Hapus dibatalkan');
+        }
+      });
+    });
     // const kehadiran =document.getElementById('kehadiran');
     const reviewer1 =document.getElementById('reviewer1');
     $("#btn-submit").click(function(e) {

@@ -40,7 +40,7 @@ class KoordinatorController extends Controller
 
     public function update(Request $request, string $id)
     {
-
+        // dd($request->all());
         function reviewer1(String $submission, String $request)
         {
 
@@ -91,5 +91,11 @@ class KoordinatorController extends Controller
         }
 
         return redirect('/koordinator');
+    }
+    public function delete(string $id)
+    {
+        $reviewer2 = DetailJurnal::where('submission', '=', $id)->where('status', '=', 1);
+        $reviewer2->delete();
+        return redirect('/koordinator/edit/' . $id);
     }
 }
