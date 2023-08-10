@@ -18,7 +18,7 @@
             </div>
             <div class="panel-body no-padding">
             
-                <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered datatables" id="crudtable">
+                <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered datatables" id="example">
                     <thead class="text-center">
                         <tr>
                             <th class="text-center" width="5%">Submission</th>
@@ -82,11 +82,12 @@
         </div>
     </div>
 </div>
+<script>
+ new DataTable('#example');
+</script>
 @include('layouts.detail-modal')
 @push('notif')
 <script>
-    
-    
      $(".btn-delete").click(function(e) {
       var id=$(this).attr('data-deleteid');
    
