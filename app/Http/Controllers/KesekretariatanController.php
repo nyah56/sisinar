@@ -12,7 +12,7 @@ class KesekretariatanController extends Controller
     public function index()
     {
         //
-        $jurnal = Jurnal::all();
+        $jurnal = Jurnal::paginate(10);
         return view('kesekretariatan.kesekretariatan', [
 
             'jurnal' => $jurnal,

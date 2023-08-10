@@ -14,3 +14,8 @@ a .logged-id{
     display: block; /* This ensures the image will take full width */
     margin: 0 auto; /* This centers the image horizontally */
   }
+.hidden-form{
+    padding: 20px;
+    background-color: #f2f2f2;
+    height:10px;
+}

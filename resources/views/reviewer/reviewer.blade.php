@@ -77,6 +77,9 @@
                 <!--end table-->
                 
             </div>
+            <div class="panel-footer pull-right">
+                {{ $reviewer->links()}}
+              </div>
         </div>
     </div>
 </div>

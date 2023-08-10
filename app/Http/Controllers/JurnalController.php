@@ -11,10 +11,11 @@ class JurnalController extends Controller
     /**
      * Display a listing of the resource.
      */
+
     public function index()
     {
         //
-        $jurnal = Jurnal::all();
+        $jurnal = Jurnal::paginate(10);
         return view('jurnal.jurnal', [
 
             'jurnal' => $jurnal,

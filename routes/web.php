@@ -30,6 +30,7 @@ Route::middleware(['auth', 'role:Admin'])->group(function () {
     Route::get('/jurnal', [JurnalController::class, 'index']);
 
     Route::get('/jurnal/tambah', [JurnalController::class, 'create']);
+
     Route::post('/jurnal/store', [JurnalController::class, 'store']);
     Route::get('/jurnal/edit/{id}', [JurnalController::class, 'edit']);
     Route::put('/jurnal/update/{id}', [JurnalController::class, 'update']);

@@ -9,11 +9,12 @@
         <div class="panel panel-indigo" id="panel-editable">
             <div class="panel-heading">
                 <h2>Tabel Jenis Seminar</h2>
-                <div class="panel-ctrls"> 
-                    <div class="DTTT btn-group pull-left mt-sm mr-3">
+                <div class="panel-ctrls">
+                    
+                    <div class="DTTT btn-group pull-right mt-sm mr-3">
                     <a class="btn btn-indigo DTTT_button_text" id="ToolTables_crudtable_0"href="/seminar/entry"><i class="ti ti-plus"></i> <span>New</span></a>
                     </div>
-                
+                   
                 </div>
             </div>
             <div class="panel-body no-padding">
@@ -53,6 +54,9 @@
            
                 
             </div>
+            <div class="panel-footer pull-right">
+                {{ $seminar->links()}}
+              </div>
         </div>
     </div>
 </div>

@@ -40,7 +40,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-  
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
 </head>
 
 <body class="animated-content sidebar-collapsed">
@@ -212,7 +212,7 @@
 						</div><!-- /.modal -->
 					</div> <!-- #page-content -->
 				</div>
-			
+		
 				<footer role="contentinfo">
 					<div class="clearfix">
 						<ul class="list-unstyled list-inline pull-left">
@@ -220,7 +220,7 @@
 						</ul>
 						<button class="pull-right btn btn-link btn-xs hidden-print" id="back-to-top"><i class="ti ti-arrow-up"></i></button>
 					</div>
-				</footer>
+				</footer> 
 
 			</div>
 		</div>
@@ -271,7 +271,8 @@ defer
 
 @stack('notif')
 @stack('text')
-@stack('add')
+@stack('data-table')
+
 </body>
 
 
