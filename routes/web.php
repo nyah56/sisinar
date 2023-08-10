@@ -24,7 +24,9 @@ Route::post('/login/store', [LoginController::class, 'loginAction']);
 Route::get('/logout', [LoginController::class, 'Logout']);
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 // Admin Role
+
 Route::middleware(['auth', 'role:Admin'])->group(function () {
+
     Route::get('/register/admin', [RegisterAdminController::class, 'index']);
     Route::post('/register/admin/action', [RegisterAdminController::class, 'actionregister']);
     Route::get('/jurnal', [JurnalController::class, 'index']);
@@ -64,8 +66,10 @@ Route::middleware(['auth', 'role:Admin,Koordinator'])->group(function () {
     Route::put('/koordinator/update/{id}', [KoordinatorController::class, 'update']);
     Route::get('/koordinator/delete/{id}', [KoordinatorController::class, 'delete']);
 });
-//API
+//API&misc
 Route::middleware(['auth', 'role:Admin,Kesekretariat,Koordinator'])->group(function () {
+    Route::get('/ganti-password', [RegisterAdminController::class, 'changePassword']);
+    Route::post('/update-password', [RegisterAdminController::class, 'updatePassword']);
     Route::get('/reviewer/fetch', [ReviewerController::class, 'fetchReviewer']); //json
     Route::get('/seminar/detail/{id}', [SeminarController::class, 'jsonSeminar']); //json
     Route::get('/jurnal/detail/{id}', [JurnalController::class, 'show']); //json

@@ -71,7 +71,7 @@
 				</a>
 				<ul class="dropdown-menu userinfo arrow">
 					<li><a href="#/"><span>Hi,{{ Auth::user()->username }}</span></a></li>
-					<li><a href="#/"><i class="ti ti-settings"></i><span>Profile Settings</span></a></li>
+					<li><a href="/ganti-password"><i class="ti ti-settings"></i><span>Ganti Password</span></a></li>
 				
 				<li><a href="{{ url('/logout') }}"><i class="ti ti-shift-right"></i><span>Logout</span></a></li>
 				</ul>
