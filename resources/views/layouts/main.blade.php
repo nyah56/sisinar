@@ -236,31 +236,31 @@
 {{-- <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script> --}}
 	
 	{{-- <script type="text/javascript" src="{{ asset('assets/js/jquery-1.10.2.min.js') }}"></script> <!-- Load jQuery --> --}}
-	<script type="text/javascript" src="{{ asset('assets/js/jqueryui-1.10.3.min.js') }}"></script> <!-- Load jQueryUI -->
-	<script type="text/javascript" src="{{ asset('assets/js/bootstrap.min.js') }}"></script> <!-- Load Bootstrap -->
-	<script type="text/javascript" src="{{ asset('assets/js/enquire.min.js') }}"></script> <!-- Load Enquire -->
+	<script type="text/javascript" defer src="{{ asset('assets/js/jqueryui-1.10.3.min.js') }}"></script> <!-- Load jQueryUI -->
+	<script type="text/javascript" defer src="{{ asset('assets/js/bootstrap.min.js') }}"></script> <!-- Load Bootstrap -->
+	<script type="text/javascript"defer src="{{ asset('assets/js/enquire.min.js') }}"></script> <!-- Load Enquire -->
 
-	<script type="text/javascript" src="{{ asset('assets/plugins/velocityjs/velocity.min.js') }}"></script>
+	<script type="text/javascript"defer src="{{ asset('assets/plugins/velocityjs/velocity.min.js') }}"></script>
 	<!-- Load Velocity for Animated Content -->
-	<script type="text/javascript" src="{{ asset('assets/plugins/velocityjs/velocity.ui.min.js') }}"></script>
+	<script type="text/javascript"defer src="{{ asset('assets/plugins/velocityjs/velocity.ui.min.js') }}"></script>
 
-	<script type="text/javascript" src="{{ asset('assets/plugins/wijets/wijets.js') }}"></script> <!-- Wijet -->
+	<script type="text/javascript"defer src="{{ asset('assets/plugins/wijets/wijets.js') }}"></script> <!-- Wijet -->
 
-	<script type="text/javascript" src="{{ asset('assets/plugins/codeprettifier/prettify.js') }}"></script> <!-- Code Prettifier  -->
-	<script type="text/javascript" src="{{ asset('assets/plugins/bootstrap-switch/bootstrap-switch.js') }}"></script>
+	<script type="text/javascript"defer src="{{ asset('assets/plugins/codeprettifier/prettify.js') }}"></script> <!-- Code Prettifier  -->
+	<script type="text/javascript"defer src="{{ asset('assets/plugins/bootstrap-switch/bootstrap-switch.js') }}"></script>
 	<!-- Swith/Toggle Button -->
 
-	<script type="text/javascript" src="{{ asset('assets/plugins/bootstrap-tabdrop/js/bootstrap-tabdrop.js') }}"></script>
+	<script type="text/javascript"defer src="{{ asset('assets/plugins/bootstrap-tabdrop/js/bootstrap-tabdrop.js') }}"></script>
 	<!-- Bootstrap Tabdrop -->
 
-	<script type="text/javascript" src="{{ asset('assets/plugins/iCheck/icheck.min.js') }}"></script> <!-- iCheck -->
+	<script type="text/javascript"defer src="{{ asset('assets/plugins/iCheck/icheck.min.js') }}"></script> <!-- iCheck -->
 
-	<script type="text/javascript" src="{{ asset('assets/plugins/nanoScroller/js/jquery.nanoscroller.min.js') }}"></script>
+	<script type="text/javascript"defer src="{{ asset('assets/plugins/nanoScroller/js/jquery.nanoscroller.min.js') }}"></script>
 	<!-- nano scroller -->
-
-	<script type="text/javascript" src="{{ asset('assets/js/application.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('assets/demo/demo.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('assets/demo/demo-switcher.js') }}"></script>
+defer
+	<script type="text/javascript"defer src="{{ asset('assets/js/application.js') }}"></script>
+	<script type="text/javascript"defer src="{{ asset('assets/demo/demo.js') }}"></script>
+	<script type="text/javascript"defer src="{{ asset('assets/demo/demo-switcher.js') }}"></script>
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
 
 {{-- <script type="text/javascript" src="{{ asset('assets/plugins/form-daterangepicker/daterangepicker.js') }}"></script>     				<!-- Date Range Picker -->
