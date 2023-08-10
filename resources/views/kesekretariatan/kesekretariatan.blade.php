@@ -32,7 +32,7 @@
                       @forelse ($jurnal as $jur)    
                       <tr>
                         <td>{{$jur -> submission}}</td>
-                        <td>{{$jur -> judul}} </td>
+                        <td>{{limitJudul($jur ->judul)}} </td>
                         <td>{{$jur -> nama}}</td>
                         <td><a href="https://wa.me/62{{$jur -> no_wa}}" target="_blank">{{$jur -> no_wa}}</a></td>
                         <td>{{$jur->dataSeminar->jenis_seminar}}</td>

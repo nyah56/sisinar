@@ -104,7 +104,7 @@
                 @enderror">
                     <label class="col-md-3 control-label">No Whatsapp</label>
                     <div class="col-md-6">
-                        <input type="text" name="wa"class="form-control" value="62{{ old('wa') }}">
+                        <input type="text" name="wa"class="form-control" value="{{ old('wa','62') }}">
                     </div>
                     <div class="col-sm-3"><p class="help-block">6281234567890</p></div>
                     @error('wa')

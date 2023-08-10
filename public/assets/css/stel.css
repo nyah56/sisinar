@@ -14,8 +14,69 @@ a .logged-id{
     display: block; /* This ensures the image will take full width */
     margin: 0 auto; /* This centers the image horizontally */
   }
-.hidden-form{
-    padding: 20px;
-    background-color: #f2f2f2;
-    height:10px;
+.info-custom{
+  margin: 0px 0px 32px;
+  background: #fff;
+  padding: 16px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 2px;
+  display: block;
 }
+.info-custom .tile-heading {
+    text-align: left;
+    color: #9e9e9e;
+    height: 16px;
+    line-height: 16px;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+  }
+  .info-custom .tile-body {
+    text-align: right;
+    color: #616161;
+    font-size: 36px;
+    font-weight: 400;
+    line-height: 72px;
+    position: relative;
+    z-index: 1;
+  }
+  .info-custom .tile-footer {
+    text-align: right;
+    font-size: 12px;
+    position: absolute;
+    right: 12px;
+    bottom: 8px;
+  }
+  .info-custom .tile-icon {
+    position: absolute;
+    height: 160px;
+    width: 160px;
+    border-radius: 50%;
+    left: -80px;
+    bottom: -80px;
+  }
+  .info-custom .tile-icon i {
+    font-size: 52px;
+    position: absolute;
+    left: 96px;
+    top: 0;
+  }
+  .info-custom.tile-warning .tile-icon i {
+    color: #ffecb3;
+  }
+  .info-custom.tile-success .tile-icon i {
+    color: #dcedc8;
+  }
+  .info-custom.tile-teal .tile-icon i {
+    color: #b2dfdb;
+  }
+  .info-custom.tile-lime .tile-icon i {
+    color: #f0f4c3;
+  }
+  .info-custom.tile-danger .tile-icon i {
+    color: #f9bdbb;
+  }
+  .info-custom.tile-info .tile-icon i {
+    color: #b2ebf2;
+  }
