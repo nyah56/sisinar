@@ -2,7 +2,7 @@
 @section('isi')
 <div class="panel panel-indigo">
     <div class="panel-heading">
-        <h2>Entry Data Jurnal</h2>
+        <h2>Edit Data Jurnal</h2>
     </div>
         <div class="panel-body">
             
@@ -119,65 +119,33 @@
                     <label class="col-md-3 control-label">Jenis Seminar</label>
                     <div class="col-md-6">
                         <select  class="form-control" name="kode_seminar" id="seminar" >
-                               
-                            {{-- <option value="0">Pilih Jenis Seminar</option> --}}
-                            @forelse ($seminar as $s)
-                            <option value="{{$s->kode_seminar}}" @selected(old('kode_seminar' == $jurnal->kode_seminar)) {{ old('kode_seminar', $jurnal->kode_seminar) == $s->kode_seminar ? 'selected' : '' }}>{{ $s->jenis_seminar }}</option>
-                            @empty         
-                            <option value="">Kosong</option>
-                            @endforelse
-        
+                                <option value="0">Pilih Jenis Seminar</option>
+                                @forelse($seminar as $s)
+                                 <option value="{{$s->kode_seminar}}" @selected($s->kode_seminar == $jurnal->kode_seminar)>{{ $s->jenis_seminar }}</option>
+                                 @empty
+                                <option value="">Kosong</option>
+                                @endforelse
+                                
                         </select>
                     </div>
                 </div>
                 <input type="hidden" value="{{$jurnal->status}}">
                 <input type="hidden" value="{{$jurnal->pembayaran}}">
-                {{-- <div class="form-group">
-                    <label class="col-md-3 control-label">Status</label>
-                    <div class="col-md-6">
-                        <select  class="form-control" name="status" id="status" >
-                                <option value="0">Pilih Status</option>
-                                <option value="1">Submission</option>
-                                <option value="2">Review</option>
-                                <option value="3">Menunggu Revisi</option>
-                                <option value="4">Accepted</option>
-                                <option value="5">CopyEditing</option>
-                                <option value="6">Production</option>
-                                <option value="7">Publish</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-					<label class="col-md-3 control-label">Pembayaran</label>
-					<div class="col-md-6">
-						<label class="radio-inline icheck">
-							<div class="iradio_minimal-blue" style="position: relative;"><input type="radio" name ="pembayaran" id="inlineradio1" value="0" name="optionsRadiosInline" style="position: absolute; opacity: 0;" checked="checked"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> Belum Lunas
-						</label>
-						<label class="radio-inline icheck">
-							<div class="iradio_minimal-blue" style="position: relative;"><input type="radio" name ="pembayaran" id="inlineradio2" value="1" name="optionsRadiosInline" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> Lunas
-						</label>
-					
-					</div>
-				</div> --}}
+               
                 <div class="form-group">
                     <label class="col-md-3 control-label">Kehadiran</label>
                     <div class="col-md-6">
                         <select  class="form-control" name="kehadiran" id="kehadiran" >
-                            
-                            @if ($jurnal->kehadiran == 1)    
-                            <option value="1">Offline</option>
-                            <option value="2">Online</option>
-                            @elseif($jurnal->kehadiran == 2) 
-                            <option value="2">Online</option>
-                            <option value="1">Offline</option>
-                            @endif    
+                                <option value="0">Pilih Kehadiran</option>
+                                <option value="1"@selected($jurnal->kehadiran==1)>Offline</option>
+                                <option value="2"@selected($jurnal->kehadiran==2)>Online</option>
                         </select>
                     </div>
                 </div>
                 <div class="form-group">
 					<label class="col-md-3 control-label">Catatan</label>
 					<div class="col-md-6">
-						<textarea class="form-control autosize" name="catatan" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 237px;">{{$jurnal->catatan}}</textarea>
+						<textarea class="form-control autosize" name="catatan" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 237px; overflow-y: auto;">{{$jurnal->catatan}}</textarea>
 					</div>
 					<div class="col-sm-2"><p class="help-block">Tulis Catatan</p></div>
 				</div>

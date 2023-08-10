@@ -19,7 +19,7 @@
 									<div class="modal-body">
 										
 										<div class="panel-body" id="modalDataContainer">
-                                            <p>Loading</p>
+                                            <p>Terjadi Error saat loading</p>
 											
 										</div>
                                         <div class="modal-footer">

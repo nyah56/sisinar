@@ -2,10 +2,10 @@
 @section('isi')
 <div class="panel panel-indigo">
     <div class="panel-heading">
-        <h2>Edit Kesekretariatan</h2>
+        <h2>Edit Koordinator</h2>
     </div>
         <div class="panel-body">
-
+            
             <form action="{{ url('/koordinator/update/'.$jurnal->submission) }}" id="form1" class="form-horizontal row-border" method="POST">
                 @csrf
                 @method('PUT')
@@ -99,14 +99,14 @@
                     </div>
                     @enderror
                 </div>
-
+              
                 <div class="form-group 
                 @error('wa')
                 has-error
                 @enderror">
                     <label class="col-md-3 control-label">No Whatsapp</label>
                     <div class="col-md-6">
-                        <input type="text" name="wa"class="form-control" value="62{{ $jurnal->no_wa }}" disabled>
+                        <input type="text" name="wa"class="form-control" value="{{ $jurnal->no_wa }}" disabled>
                     </div>
                     <div class="col-sm-3"><p class="help-block">6281234567890</p></div>
                     @error('wa')
@@ -122,7 +122,7 @@
                         <select  class="form-control" name="kode_seminar" id="seminar" disabled>
                                 <option value="0">Pilih Jenis Seminar</option>
                                 @forelse ($seminar as $s)
-                                <option value="{{$s->kode_seminar}}">{{ $s->jenis_seminar }}</option>
+                                <option value="{{$s->kode_seminar}}"@selected($s->kode_seminar==$jurnal->kode_seminar)>{{ $s->jenis_seminar }}</option>
                                 @empty         
                                 <option value="">Kosong</option>
                                 @endforelse
@@ -132,50 +132,67 @@
                 <div class="form-group">
                     <label class="col-md-3 control-label">Status</label>
                     <div class="col-md-6">
-                        <select  class="form-control" name="status" id="status">
-                                <option value="0">Pilih Status</option>
-                                <option value="1">Submission</option>
-                                <option value="2">Review</option>
-                                <option value="3">Menunggu Revisi</option>
-                                <option value="4">Accepted</option>
-                                <option value="5">CopyEditing</option>
-                                <option value="6">Production</option>
-                                <option value="7">Publish</option>
-                        </select>
+                        <select  class="form-control" name="status" id="status" >
+                            <option value="0">Pilih Status</option>
+                            <option value="1"@selected($jurnal->status == 1)>Submission</option>
+                            <option value="2"@selected($jurnal->status == 2)>Review</option>
+                            <option value="3"@selected($jurnal->status == 3)>Menunggu Revisi</option>
+                            <option value="4"@selected($jurnal->status == 4)>Accepted</option>
+                            <option value="5"@selected($jurnal->status == 5)>CopyEditing</option>
+                            <option value="6"@selected($jurnal->status == 6)>Production</option>
+                            <option value="7"@selected($jurnal->status == 7)>Publish</option>
+                    </select>
                     </div>
                 </div>
+               
                 <div class="form-group">
-					<label class="col-md-3 control-label">Pembayaran</label>
-					<div class="col-md-6">
-						<label class="radio-inline icheck">
-							<div class="iradio_minimal-blue" style="position: relative;"><input  type="radio" name ="pembayaran" id="inlineradio1" value="1" name="optionsRadiosInline" style="position: absolute; opacity: 0;" checked="checked"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> Belum Lunas
-						</label>
-						<label class="radio-inline icheck">
-							<div class="iradio_minimal-blue" style="position: relative;"><input type="radio" name ="pembayaran" id="inlineradio2" value="2" name="optionsRadiosInline" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> Lunas
-						</label>
-
-					</div>
-				</div>
-                <div class="form-group">
+                           
                     <label class="col-md-3 control-label">Reviewer 1</label>
                     <div class="col-md-6">
-                        <select  class="form-control" name="reviewer[0]" id="kehadiran" >
-                                <option value="0">Pilih Reviewer</option>
+                        <select  class="form-control select-reviewer js-states" name="reviewer1" id="reviewer1" >
+                            @if($detail1->isEmpty())
+                                <option></option>
                                 @foreach ($reviewer as $r)
                                 <option value="{{ $r->id_reviewer }}">{{ $r->nama }}</option>
                                 @endforeach
+                            @else
+                                <option></option>
+                                @foreach ($reviewer as $r)
+                                <option value="{{ $r->id_reviewer }}"  @selected($r->id_reviewer == $detail1[0]->id_reviewer)>{{ $r->nama }}</option>
+                                @endforeach
+                            @endif
+                            
                         </select>
-                        <input type="hidden" class="status" name="inputstatus[0]" value="0">
+                        
                     </div>
-                    <button type="button" class="btn btn-primary"id="btn-add"> <i class="ti ti-eye"></i></button>
+                   
                 </div>
-              <div id="add">
 
+                <div class="form-group">      
+                        <label class="col-md-3 control-label">Reviewer 2</label>
+                        <div class="col-md-6">
+                            <select  class="form-control select-reviewer" name="reviewer2">
+                                @if($detail2->isEmpty())
+                                    <option></option>
+                                    @foreach ($reviewer as $r)
+                                    <option value="{{ $r->id_reviewer }}">{{ $r->nama }}</option>
+                                    @endforeach
+                                @else
+                                    <option></option>
+                                    @foreach ($reviewer as $r)
+                                    <option value="{{ $r->id_reviewer }}" @selected($r->id_reviewer == $detail2[0]->id_reviewer) >{{ $r->nama }}</option>
+                                    @endforeach
+                                @endif
+                            </select>
+                        </div> 
+                        @if (!$detail2->isEmpty())
+                        <a type="button" class="btn btn-danger del-rev2" data-deleteId="{{ $jurnal->submission }}"><i class="ti ti-trash"></i></a>
+                        @endif
               </div>
                 <div class="form-group">
 					<label class="col-md-3 control-label">Catatan</label>
 					<div class="col-md-6">
-						<textarea class="form-control autosize" name="catatan" disabled style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 237px;" ">{{ $jurnal->catatan }}</textarea>
+						<textarea class="form-control autosize" name="catatan" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 237px; overflow-y: auto;"  >{{ $jurnal->catatan }}</textarea>
 					</div>
 					<div class="col-sm-2"><p class="help-block">Tulis Catatan</p></div>
 				</div>
@@ -189,81 +206,50 @@
             </form>
     </div>
 </div>
-@push('add')
-    <script>
-        const btnAdd= document.getElementById('btn-add');
-        const newInput= document.getElementById('add');
-        let state=true;
-        const fetchReviewer=async()=>{
-            try {
-            const response = await fetch(`/reviewer/fetch`);
-                const data = await response.json();
-                return data;
-                // console.log(data);
-            } 
-            catch (error) {
-                return {}; // Return an empty object if there's an error
-        }
-        }
-        btnAdd.addEventListener("click", async function(){
-        state =!state;
-        let optionsData=await fetchReviewer();
-        // console.log(state);
-         if (!state){
-            // options.array.forEach(option => {
-            //     const optionElement = document.createElement('option');
-            //     optionElement.value=option.id_reviewer;
-            //     optionElement.textContent=option.nama_reviewer;
-                
-            // });
-                const selectElement = document.createElement('select');
-                selectElement.classList.add('form-control');
-                selectElement.name = 'reviewer[1]';
-                
-                const defaultOption = document.createElement('option');
-                defaultOption.value = '0';
-                defaultOption.textContent = 'Pilih Reviewer';
-                selectElement.appendChild(defaultOption);
 
-                optionsData.forEach(option => {
-                const optionElement = document.createElement('option');
-                optionElement.value = option.id_reviewer;
-                optionElement.textContent = option.nama;
-                selectElement.appendChild(optionElement);
-
-                // const inputElement = document.createElement('input');
-                // inputElement.classList.add('status');
-                // inputElement.setAttribute("type", "hidden");
-                // inputElement.name = 'inputstatus[1]';
-                // inputElement.value = '2';
-                
-                });
-                // Add the select element with options to the newInput div
-                newInput.innerHTML = `<div class="form-group">
-                        <label class="col-md-3 control-label">Reviewer 2</label>
-                        <div class="col-md-6">
-                            ${selectElement.outerHTML}
-                            </div>
-                            <input type="hidden" class="status" name="inputstatus[1]" value="1">
-                    </div>`;
-         }
-         else{
-            newInput.innerHTML='';
-         }
-        })
-    </script>
-@endpush
 @push('notif')
   <script> 
-    let kehadiran =document.getElementById('kehadiran');
+    $(document).ready(function() {
+        $(".select-reviewer").select2({
+            placeholder: "Pilih Reviewer",
+            allowClear: false
+
+            });
+    });
+    $(".del-rev2").click(function(e) {
+      var id=$(this).attr('data-deleteid');
+   
+      e.preventDefault();
+      swal({
+        title: 'Yakin ingin hapus Reviewer 2?',
+        text: "Reviewer 2 akan Dihapus",
+        icon: 'warning',
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          window.location="/koordinator/delete/"+id+""
+          swal("Data anda berhasil dihapus", {
+            icon: "success",
+            });
+          // form.submit();
+          // console.log(id);
+        } else {
+          swal('Proses Hapus dibatalkan');
+        }
+      });
+    });
+    // const kehadiran =document.getElementById('kehadiran');
+    const reviewer1 =document.getElementById('reviewer1');
     $("#btn-submit").click(function(e) {
     var form = $(this).closest("form");
     var name = $(this).data("name");
     e.preventDefault();
     // console.log(seminar.value);
-    if(kehadiran.value==0){
+    if(reviewer1.value==0){
     swal({
-        title: "Harap Mengisi Kehadiran",
+        title: "Reviewer 1 Harus diisi",
         icon: 'warning'
     });
     }
@@ -274,4 +260,5 @@
   });
   </script>  
 @endpush
+
 @endsection

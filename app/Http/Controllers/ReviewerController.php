@@ -16,7 +16,6 @@ class ReviewerController extends Controller
             'reviewer' => $reviewer,
         ]);
     }
-
     public function fetchReviewer()
     {
         $reviewer = Reviewer::all();

@@ -2,7 +2,7 @@
 @section('isi')
 <div class="panel panel-indigo">
     <div class="panel-heading">
-        <h2>Entry Data Jenis Seminar</h2>
+        <h2>Edit Data Jenis Seminar</h2>
     </div>
         <div class="panel-body">
             

@@ -26,49 +26,19 @@ class KesekretariatanController extends Controller
     }
     public function update(Request $request, string $id)
     {
-
+        // dd($request->all());
         $jurnal = Jurnal::find($id);
         $this->validate($request, [
             'pembayaran' => 'required',
             'kehadiran' => 'required',
+
         ]);
         $jurnal->update([
             'pembayaran' => $request->pembayaran,
             'kehadiran' => $request->kehadiran,
+            'catatan' => $request->catatan,
         ]);
         return redirect('/kesekretariatan');
-
-    }
-
-    public function indexAdmin()
-    {
-        //
-        $jurnal = Jurnal::all();
-        return view('kesekretariatan.kesekretariatanAdmin', [
-
-            'jurnal' => $jurnal,
-        ]);
-    }
-
-    public function editAdmin(string $id)
-    {
-        $jurnal = Jurnal::find($id);
-        $seminar = Seminar::all();
-        return view('kesekretariatan.kesekretariatan-editAdmin', ['jurnal' => $jurnal, 'seminar' => $seminar]);
-    }
-    public function updateAdmin(Request $request, string $id)
-    {
-
-        $jurnal = Jurnal::find($id);
-        $this->validate($request, [
-            'pembayaran' => 'required',
-            'kehadiran' => 'required',
-        ]);
-        $jurnal->update([
-            'pembayaran' => $request->pembayaran,
-            'kehadiran' => $request->kehadiran,
-        ]);
-        return redirect('/kesekretariatan/admin');
 
     }
 }

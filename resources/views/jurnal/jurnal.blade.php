@@ -3,7 +3,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="alert alert-info">
-            Tambah atau Ubah Data Jurnal Disini kolom belum lengkap perlu konsul
+            Tambah atau Ubah Data Jurnal Disini 
             <button type="button" class="close" data-dismiss="alert">&times;</button>
         </div>
         <div class="panel panel-indigo" id="panel-editable">
@@ -62,7 +62,7 @@
                         <td> 
                             <div class="btn-group">
                                 <button type="button" data-toggle = "modal" data-target="#detailData" class="btn btn-primary btn-detail openModalButton" data-id="{{ $jur->submission }}"><i class="ti ti-eye"></i></button>
-                                <a type="button" class="btn btn-orange" href="/jurnaledit/{{ $jur ->submission }}"><i class="ti ti-pencil-alt"></i></a>
+                                <a type="button" class="btn btn-orange" href="/jurnal/edit/{{ $jur ->submission }}"><i class="ti ti-pencil-alt"></i></a>
                                 <a type="button" class="btn btn-danger btn-delete" data-deleteId="{{ $jur ->submission}}" data-toggle="tooltip"><i class="ti ti-trash"></i></a>
                             </div>
                         </td>
