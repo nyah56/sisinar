@@ -77,17 +77,15 @@
              
                 
             </div>
-            <div class="panel-footer">
-                <div class="pull-left">
-                  <p>Displaying {{$jurnal->count()}} of {{ $jurnal->total() }} data(s).</p>
-                </div>
-                <div class="pull-right">
-                  {{ $jurnal->links() }}
-                </div>
-              </div>
+           
         </div>
     </div>
 </div>
+@push('data-table')
+    <script>
+      new DataTable('#crudtable');
+    </script>
+@endpush
 @include('layouts.detail-modal')
 
 

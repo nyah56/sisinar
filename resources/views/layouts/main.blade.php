@@ -32,7 +32,7 @@
         <script type="text/javascript" src="assets/js/placeholder.min.js"></script>
     <![endif]-->
 	<!-- The following CSS are included as plugins and can be removed if unused-->
-
+	<link rel="stylesheet" href="{{ asset('assets/css/DataTable.css') }}">
 	<link type="text/css" href="{{ asset('assets/plugins/fullcalendar/fullcalendar.css') }}" rel="stylesheet"> <!-- FullCalendar -->
 	<link type="text/css" href="{{ asset('assets/plugins/jvectormap/jquery-jvectormap-2.0.2.css') }}" rel="stylesheet">
 	<!-- jVectorMap -->
@@ -40,7 +40,9 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-	<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
+	{{-- <script src="https://code.jquery.com/jquery-3.7.0.js"></script> --}}
+	<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
 </head>
 
 <body class="animated-content sidebar-collapsed">
@@ -257,7 +259,7 @@
 
 	<script type="text/javascript"defer src="{{ asset('assets/plugins/nanoScroller/js/jquery.nanoscroller.min.js') }}"></script>
 	<!-- nano scroller -->
-defer
+
 	<script type="text/javascript"defer src="{{ asset('assets/js/application.js') }}"></script>
 	<script type="text/javascript"defer src="{{ asset('assets/demo/demo.js') }}"></script>
 	<script type="text/javascript"defer src="{{ asset('assets/demo/demo-switcher.js') }}"></script>
