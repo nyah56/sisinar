@@ -17,8 +17,13 @@ class RegisterAdminController extends Controller
 
     public function actionregister(Request $request)
     {
+        $this->validate($request, [
+            'username' => 'required|unique:users',
+            'password' => 'required',
+            'role' => 'required',
+        ]);
         $user = UserModel::create([
-            'email' => $request->email,
+
             'username' => $request->username,
             'password' => Hash::make($request->password),
             'role' => $request->role,

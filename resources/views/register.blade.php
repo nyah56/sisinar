@@ -11,7 +11,7 @@
 <body>
     <div class="container"><br>
         <div class="col-md-6 col-md-offset-3">
-            <h2 class="text-center">FORM REGISTER USER</h3>
+            <h2 class="text-center">Tambah User disini</h3>
             <hr>
             @if(session('message'))
             <div class="alert alert-success">
@@ -20,9 +20,14 @@
             @endif
             <form action="{{url('/register/admin/action')}}" method="post">
             @csrf
-                <div class="form-group">
+                <div class="form-group @error('username')
+                has-warning
+                @enderror">
                     <label><i class="fa fa-user"></i> Username</label>
-                    <input type="text" name="username" class="form-control" placeholder="Username" required="">
+                    <input type="text" name="username" class="form-control " placeholder="Username" required="">
+                    @error('username')
+                    <span class="help-block">Username Sudah ada di Database</span>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <label><i class="fa fa-key"></i> Password</label>
