@@ -132,6 +132,11 @@
 													<li><a href="/koordinator">Koordinator</a></li>
 												</ul>
 											</li>
+											<li><a href="javascript:;"><i class="ti ti-receipt"></i><span>Report</span></a>
+												<ul class="acc-menu">
+													<li><a href="/report">Report</a></li>
+												</ul>
+											</li>
 										@elseif( auth()->user()->role == "Kesekretariat")
 										<li><a href="javascript:;"><i class="ti ti-money"></i><span>Kesekretariatan</span></a>
 											<ul class="acc-menu">

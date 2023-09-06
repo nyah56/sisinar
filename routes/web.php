@@ -6,6 +6,7 @@ use App\Http\Controllers\KesekretariatanController;
 use App\Http\Controllers\KoordinatorController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterAdminController;
+use App\Http\Controllers\reportController;
 use App\Http\Controllers\ReviewerController;
 use App\Http\Controllers\SeminarController;
 use Illuminate\Support\Facades\Route;
@@ -48,6 +49,11 @@ Route::middleware(['auth', 'role:Admin'])->group(function () {
     Route::get('/reviewer/edit/{id}', [ReviewerController::class, 'edit']);
     Route::put('/reviewer/update/{id}', [ReviewerController::class, 'update']);
     Route::get('/reviewer/destroy/{id}', [ReviewerController::class, 'destroy']);
+    //report
+    Route::get('/report',[reportController::class,'index']);
+    Route::post('/report/search',[reportController::class,'search']);
+    Route::get('/report/cetak/',[reportController::class,'cetak']);
+    Route::get('/report/cetak/semua',[reportController::class,'cetaksemua']);
 
 });
 // Kesek Role

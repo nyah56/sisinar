@@ -13,7 +13,7 @@ class SeminarController extends Controller
     public function index()
     {
         //
-        $seminar = Seminar::all();
+        $seminar = Seminar::paginate(10);
         return view('jenis_seminar.seminar', [
 
             'seminar' => $seminar,

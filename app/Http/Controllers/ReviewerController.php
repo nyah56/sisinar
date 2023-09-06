@@ -10,7 +10,7 @@ class ReviewerController extends Controller
     public function index()
     {
         //
-        $reviewer = Reviewer::all();
+        $reviewer = Reviewer::paginate(10);
         return view('reviewer.reviewer', [
 
             'reviewer' => $reviewer,

@@ -23,18 +23,18 @@ class DashboardController extends Controller
         $kesek = UserModel::where('role', 'Kesekretariat')->count();
         //SENIATI
         $subTI = Jurnal::join('tb_jenisseminar', 'tb_jurnal.kode_seminar', '=', 'tb_jenisseminar.kode_seminar')
-        ->where('tb_jenisseminar.jenis_seminar', 'SENIATI')->where('tb_jurnal.status', 1)->count();
+            ->where('tb_jenisseminar.jenis_seminar', 'SENIATI')->where('tb_jurnal.status', 1)->count();
         $revTI = Jurnal::join('tb_jenisseminar', 'tb_jurnal.kode_seminar', '=', 'tb_jenisseminar.kode_seminar')
-        ->where('tb_jenisseminar.jenis_seminar', 'SENIATI')->where('tb_jurnal.status', 2)->count();
+            ->where('tb_jenisseminar.jenis_seminar', 'SENIATI')->where('tb_jurnal.status', 2)->count();
         $pubTI = Jurnal::join('tb_jenisseminar', 'tb_jurnal.kode_seminar', '=', 'tb_jenisseminar.kode_seminar')
-        ->where('tb_jenisseminar.jenis_seminar', 'SENIATI')->where('tb_jurnal.status', 7)->count();
+            ->where('tb_jenisseminar.jenis_seminar', 'SENIATI')->where('tb_jurnal.status', 7)->count();
         //SEMSINA
         $subNA = Jurnal::join('tb_jenisseminar', 'tb_jurnal.kode_seminar', '=', 'tb_jenisseminar.kode_seminar')
-        ->where('tb_jenisseminar.jenis_seminar', 'SEMSINA')->where('tb_jurnal.status', 1)->count();
+            ->where('tb_jenisseminar.jenis_seminar', 'SEMSINA')->where('tb_jurnal.status', 1)->count();
         $revNA = Jurnal::join('tb_jenisseminar', 'tb_jurnal.kode_seminar', '=', 'tb_jenisseminar.kode_seminar')
-        ->where('tb_jenisseminar.jenis_seminar', 'SEMSINA')->where('tb_jurnal.status', 2)->count();
+            ->where('tb_jenisseminar.jenis_seminar', 'SEMSINA')->where('tb_jurnal.status', 2)->count();
         $pubNA = Jurnal::join('tb_jenisseminar', 'tb_jurnal.kode_seminar', '=', 'tb_jenisseminar.kode_seminar')
-        ->where('tb_jenisseminar.jenis_seminar', 'SEMSINA')->where('tb_jurnal.status', 7)->count();
+            ->where('tb_jenisseminar.jenis_seminar', 'SEMSINA')->where('tb_jurnal.status', 7)->count();
         // dd($subTI);
 
         // dd($semsina);
@@ -45,7 +45,7 @@ class DashboardController extends Controller
             'reviewer',
             'koor',
             'kesek',
-            'subTI','revTI','pubTI','subNA','revNA','pubNA',
+            'subTI', 'revTI', 'pubTI', 'subNA', 'revNA', 'pubNA',
         ));
     }
 }
