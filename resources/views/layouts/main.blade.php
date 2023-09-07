@@ -122,7 +122,7 @@
 													<li><a href="/kesekretariatan">Kesekretariatan</a></li>
 												</ul>
 											</li>
-											<li><a href="javascript:;"><i class="ti ti-receipt"></i><span>Koordinator</span></a>
+											<li><a href="javascript:;"><i class="ti ti-user"></i><span>Koordinator</span></a>
 												<ul class="acc-menu">
 													<li><a href="/koordinator">Koordinator</a></li>
 												</ul>
@@ -134,12 +134,17 @@
 											</ul>
 										</li>
 										@elseif( auth()->user()->role == "Koordinator")
-										<li><a href="javascript:;"><i class="ti ti-receipt"></i><span>Koordinator</span></a>
+										<li><a href="javascript:;"><i class="ti ti-user"></i><span>Koordinator</span></a>
 											<ul class="acc-menu">
 												<li><a href="/koordinator">Koordinator</a></li>
 											</ul>
 										</li>
 										@endif
+										<li><a href="javascript:;"><i class="ti ti-files"></i><span>Report</span></a>
+											<ul class="acc-menu">
+												<li><a href="/report">Report</a></li>
+											</ul>
+										</li>
 									@endauth
 
 
@@ -162,6 +167,7 @@
 							@yield('isi')
 						</div> <!-- .container-fluid -->
 						{{-- login form --}}
+						@guest
 						<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 							<div class="modal-dialog modal-dialog-centered">
 								<div class="modal-content col-md-8 col-md-offset-2">
@@ -211,7 +217,8 @@
 									
 								</div><!-- /.modal-content -->
 							</div><!-- /.modal-dialog -->
-						</div><!-- /.modal -->
+						</div><!-- /.modal -->	
+						@endguest
 					</div> <!-- #page-content -->
 				</div>
 		
