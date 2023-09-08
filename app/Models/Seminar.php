@@ -13,4 +13,15 @@ class Seminar extends Model
     public $incrementing = false;
     protected $fillable = ['kode_seminar', 'jenis_seminar'];
     public $timestamps = false;
+
+    public static function getJenis($jenis)
+    {
+        $seminar = self::where('jenis_seminar', $jenis)->first();
+
+        if ($seminar) {
+            return $seminar->kode_seminar;
+        }
+
+        return null;
+    }
 }

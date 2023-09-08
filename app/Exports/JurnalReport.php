@@ -33,7 +33,9 @@ class JurnalReport extends \PhpOffice\PhpSpreadsheet\Cell\StringValueBinder impl
     }
     public function view(): View
     {
+
         $jurnal = Jurnal::where('kode_seminar', $this->kode_seminar)->get();
+
         return view('report.jurnal-report', ['jurnal' => $jurnal]);
 
     }

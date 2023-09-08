@@ -13,13 +13,15 @@ use Maatwebsite\Excel\Facades\Excel;
 class ReportController extends Controller
 {
     //
+    private $state;
     public function index()
     {
+        $state = false;
         session()->forget('search', 'namaSeminar');
         $seminar = Seminar::all();
         $jurnal = Jurnal::paginate(10);
         return view('report.report', [
-
+            'state' => $state,
             'jurnal' => $jurnal,
             'seminar' => $seminar,
         ]);
@@ -27,21 +29,28 @@ class ReportController extends Controller
     }
     public function search(Request $request)
     {
+        // dd($request->all());
+
         session()->forget('search', 'namaSeminar');
         $seminar = Seminar::all();
-        $jurnal = Jurnal::where('kode_seminar', $request->jenis)->get();
-        $seminarSelected = Seminar::where('kode_seminar', $request->jenis)->get('jenis_seminar')->first();
-        $sessionNamaSeminar = $seminarSelected->jenis_seminar;
+        // $tes = Seminar::find($request->kode);
+        $seminarFilter = Seminar::getJenis($request->seminar);
+        $state = !is_null($seminarFilter);
+        // dd($seminarFilter);
+        $jurnal = Jurnal::where('kode_seminar', $seminarFilter)->get();
+
+        // $sessionNamaSeminar = $seminarSelected->jenis_seminar;
 
         session([
-            'search' => $request->jenis,
-            'namaSeminar' => $sessionNamaSeminar,
+            'search' => $seminarFilter,
+            'namaSeminar' => $request->seminar,
 
         ]);
-        return view('report.report-search', [
+        return view('report.report', [
+            'state' => $state,
             'jurnal' => $jurnal,
             'seminar' => $seminar,
-            'seminarSel' => $seminarSelected,
+            // 'seminarSel' => $seminarSelected,
         ]);
     }
     public function cetak()

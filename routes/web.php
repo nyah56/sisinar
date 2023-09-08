@@ -75,7 +75,7 @@ Route::middleware(['auth', 'role:Admin,Kesekretariat,Koordinator'])->group(funct
     Route::get('/seminar/detail/{id}', [SeminarController::class, 'jsonSeminar']); //json
     Route::get('/jurnal/detail/{id}', [JurnalController::class, 'show']); //json
     Route::get('/report', [ReportController::class, 'index']);
-    Route::post('/report/search', [ReportController::class, 'search']);
+    Route::get('/report/search', [ReportController::class, 'search']);
     Route::get('/report/cetak/', [ReportController::class, 'cetak']);
     Route::get('/report/cetak/semua', [ReportController::class, 'cetaksemua']);
 });

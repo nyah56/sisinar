@@ -9,20 +9,24 @@
         <div class="panel">
           <div class="panel-heading">
             <h3>Data Seminar Yang Ingin Dicari</h3>
-            <form action="{{url('/report/search')}}" class="form-horizontal row-border" method="POST">
-              @csrf
-              <select name="jenis" id="selector1" class="form-control">
+            
+            <form action="{{url('/report/search')}}" class="form-horizontal row-border" >
+              {{-- <input type="hidden" name="kode" value="{{ $jurnal->kode_seminar }}"> --}}
+              <select name="seminar" id="selector1" class="form-control">
 
                 @forelse ($seminar as $item)    
-                <option value="{{$item->kode_seminar}}">{{$item->jenis_seminar}}</option>
+             
+                <option value="{{$item->jenis_seminar}}">{{$item->jenis_seminar}}</option>
                 @empty
                 <option value="">kosong</option> 
                 @endforelse
 
               </select>
-              <button type="submit" class="btn-primary btn">Cari</button>
+              <button type="submit" class="btn-indigo btn">Cari</button> 
+              <a type="button" class="btn btn-indigo" href="/report" title="Reset Pencarian"><i class="ti ti-reload"></i></a>
 
             </form>
+           
           </div>
 
         <br>
@@ -33,6 +37,9 @@
                 <div class="panel-ctrls"> 
                     <div class="DTTT btn-group pull-left mt-sm mr-3">
                       <div>
+                        @if ($state)
+                        <a href="/report/cetak/" class="btn btn-primary">Cetak</a>
+                        @endif
                         <a href="/report/cetak/semua" class="btn btn-primary">Cetak All</a>
                       </div>
                     </div>
@@ -40,7 +47,7 @@
                 </div>
             </div>
             <div class="panel-body no-padding">
-                <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered datatables">
+                <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered datatables" {!! $state ? 'id="crudtable"' : '' !!}>
                     <thead class="text-center">
                         <tr>
                             <th class="text-center" width="5%">Submission</th>
@@ -85,21 +92,25 @@
                        </tr>
                        @empty
                         <tr>
-                          <td>Data Kosong</td>
+                          <td colspan="8">Data Kosong</td>
                         </tr>
                        @endforelse
 
 
                     </tbody>
                 </table>
-                <div class="mt-sm mr-3 pull-right">
-                  {!! $jurnal->links() !!}
-                </div>
+                <
             </div> 
         </div>
     </div>
 </div>
 
+@push('data-table')
+    <script>
+      new DataTable('#crudtable');
+    
 
+    </script>
+@endpush
 
 @endsection
